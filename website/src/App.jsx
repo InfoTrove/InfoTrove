@@ -8,7 +8,7 @@ function App() {
 
   const handleClick = async () => {
     const [data, error] = await handleFetch(
-      `https://api.nytimes.com/svc/news/v3/content/nyt/business.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=movies&api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`
     );
     if (data) setData(data);
     console.log(data);
