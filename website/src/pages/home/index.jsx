@@ -1,4 +1,5 @@
 import TopStories from "../../components/topStories";
+import NavBar from "../../components/navbar";
 import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
 
