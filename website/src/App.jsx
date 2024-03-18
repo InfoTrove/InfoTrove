@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import handleFetch from "./utils/handleFetch";
-
+import Home from "./pages/home";
 function App() {
   const [data, setData] = useState([]);
   const [error, setError] = useState();
+  const [topStories, setTopStories] = useState();
 
   const handleClick = async () => {
     const [data, error] = await handleFetch(
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <>
-      <button onClick={handleClick}>submit</button>
+      <Home />
     </>
   );
 }
