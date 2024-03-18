@@ -1,14 +1,15 @@
+import logo from "../assets/logo.png"
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav className="">
+      <div>
+        <img src={logo} alt="InfoTrove Logo" />
+      </div>
       <ul>
-        <li>
-          <Link to="/Home">Main</Link>
-        </li>
-        <li>
-          <Link to="/Contact">Side</Link>
-        </li>
+        <li>Articles</li>
+        <li>Books</li>
+        <li>Movies</li>
       </ul>
     </nav>
   );

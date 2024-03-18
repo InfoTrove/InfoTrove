@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import "./index.css";
 import handleFetch from "./utils/handleFetch";
 import Home from "./pages/home";
 
