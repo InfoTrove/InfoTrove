@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import handleFetch from "./utils/handleFetch";
+
 function App() {
   const [data, setData] = useState([]);
   const [error, setError] = useState();

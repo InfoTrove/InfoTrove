@@ -10,15 +10,17 @@ Our application InfoTrove is for people who seek daily reads. with a wide variet
 
 This application will use the New York Time's API. Below are the documentation and specific endpoints we intend to use.
 
-- Link to API documentation: [Link goes here]
-- [API endpoint #1]
-  - [List of data values used by the endpoint]
-- [API endpoint #2]
-  - [List of data values used by the endpoint]
-- [API endpoint #3]
-  - [List of data values used by the endpoint]
+Link to API documentation: [Link goes here]
+- Books  #1
+  - Cover, Title, Purchase Links, Authors
+- Articles #2
+  - Cover, Title, Authors, Publish Date, Category, Key Words
+- Top stories #3
+  - Top Stories Based On Category
+- Movies #4
+  - Cover, Title, Category
 
-[If your API requires an API key, say so here.]
+[API requires key]
 
 ## 👩‍💻 MVP User Stories
 
