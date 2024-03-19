@@ -4,7 +4,7 @@ import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ArticlesProvider from "../../context/articlesProvider";
-
+import Author from "../../components/author";
 const Home = () => {
   const [data, setData] = useState([]);
   const [author, setAuthor] = useState();
@@ -22,12 +22,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" bg-white">
+    <>
+    
+    <div className=" bg-white ">
       <ArticlesProvider />
       <NavBar />
       <TopStories stories={data} />
-      <div className="w-[500px] h-[500px] border mt-5 m-auto rounded-full "></div>
+      <Author />
     </div>
+    </>
   );
 };
 
