@@ -31,6 +31,11 @@ const TopStories = ({ stories }) => {
             -ms-overflow-style: none; /* IE and Edge */
             scrollbar-width: none; /* Firefox */
           }
+          .title-container {
+            max-width: 100%; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         `}
       </style>
       <div className="relative flex justify-center items-center hide-scrollbar bg-neutral-700">
@@ -43,11 +48,17 @@ const TopStories = ({ stories }) => {
         </button>
         <div
           ref={containerRef}
-          className="flex overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar"
+          className="flex overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative"
         >
           <ul data-name="articleContainer" className="flex">
             {stories.map((story, index) => (
-              <li className="inline-block bg-orange-500 w-96 m-8" key={index}>
+              <li
+                className="relative inline-block bg-orange-500 w-96 m-8"
+                key={index}
+              >
+                <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white title-container">
+                  {story.title}
+                </div>
                 <img
                   className="h-96 object-cover"
                   src={story.multimedia[0].url}
