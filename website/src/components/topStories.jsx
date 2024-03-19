@@ -7,7 +7,7 @@ import { useRef } from "react";
 // current in ref is current rendered Element
 const TopStories = ({ stories }) => {
   const containerRef = useRef(null);
-  
+
   const scrollLeft = () => {
     if (containerRef.current) {
       containerRef.current.scrollLeft -= 900;
@@ -77,6 +77,7 @@ const TopStories = ({ stories }) => {
         >
           {"--->"}
         </button>
+       
       </div>
     </>
   );
