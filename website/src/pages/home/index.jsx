@@ -12,7 +12,8 @@ const Home = () => {
   useEffect(() => {
     const doFetch = async () => {
       const [data, error] = await handleFetch(
-        `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`
+        `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`,
+        {cache: 'force-cache'}
       );
       if (data) setData(data.results) , console.log(data)
       if (error) console.log(error);

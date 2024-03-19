@@ -7,7 +7,7 @@ import { useRef } from "react";
 // current in ref is current rendered Element
 const TopStories = ({ stories }) => {
   const containerRef = useRef(null);
-
+  
   const scrollLeft = () => {
     if (containerRef.current) {
       containerRef.current.scrollLeft -= 900;
@@ -48,12 +48,12 @@ const TopStories = ({ stories }) => {
         </button>
         <div
           ref={containerRef}
-          className="flex overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative"
+          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative"
         >
-          <ul data-name="articleContainer" className="flex">
+          <ul data-name="articleContainer" className="flex ">
             {stories?.map((story, index) => (
               <li
-                className="relative inline-block bg-orange-500 w-96 m-8"
+                className="relative hover:scale-[1.05] transition-all duration-300 inline-block bg-orange-500 w-96 m-8"
                 key={index}
               >
                 <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white title-container">
