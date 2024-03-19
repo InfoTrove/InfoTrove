@@ -2,6 +2,7 @@ import TopStories from "../../components/topStories";
 import NavBar from "../../components/navbar";
 import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -19,6 +20,7 @@ const Home = () => {
 
   return (
     <div className=" bg-white">
+      <NavBar/>
       <TopStories stories ={data} />
     </div>
   );
