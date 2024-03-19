@@ -63,6 +63,7 @@ const TopStories = ({ stories }) => {
                   className="h-96 object-cover"
                   src={story.multimedia[0].url}
                   alt={story.title}
+                  onClick={() => story.url}
                 />
               </li>
             ))}
