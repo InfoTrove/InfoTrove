@@ -3,9 +3,9 @@ const TopStories = ({ stories }) => {
     <>
     <ul>
       {stories.map((story) => (
-        <div key={story.title}>
-        <li className=" bg-orange-500 "key={story.title}>{story.title}</li>
-        <img className = " border-red-400"key = {story.created_date}src={story.multimedia[0].url} alt={story.title} />
+        <div className="flex" key={story.title}>
+        <li className=" bg-white-500"key={story.title}>{story.title}</li>
+        <img className = "border-solid border-4 border-light-blue-500 ..."key = {story.created_date}src={story.multimedia[0].url} alt={story.title} />
         </div>
       ))}
       <li>Stories</li>
