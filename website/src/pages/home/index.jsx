@@ -13,20 +13,20 @@ const Home = () => {
     const doFetch = async () => {
       const [data, error] = await handleFetch(
         `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`,
-        {cache: 'force-cache'}
+        { cache: "force-cache" }
       );
-      if (data) setData(data.results) , console.log(data)
+      if (data) setData(data.results), console.log(data);
       if (error) console.log(error);
     };
     doFetch();
   }, []);
 
-  
   return (
     <div className=" bg-white">
-      <ArticlesProvider/>
-      <NavBar/>
-      <TopStories stories ={data} />
+      <ArticlesProvider />
+      <NavBar />
+      <TopStories stories={data} />
+      <div className="w-[500px] h-[500px] border mt-5 m-auto rounded-full "></div>
     </div>
   );
 };
