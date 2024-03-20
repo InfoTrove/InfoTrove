@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import getId from "../utils/getId";
-// import books from context
+import ArticlesContext from "../context/articlesContext";
 const Author = ({}) => {
-  //                        nameContext
-  // const books = useContext(BooksContext);
+  const context = useContext(ArticlesContext);
+  const booksArr = context.books;
+  //console.log("auhtorbook", books.books[0]?.book_image);
   // multiply random decimal between 0-1 by books length and round it else null if books doesn't exist
-  // const randomBook = books ? books[Math.floor(Math.random() * books.length)] : null;
+  const randomBook = booksArr
+    ? booksArr[Math.floor(Math.random() * booksArr.length)]
+    : null;
+
+  //   console.log(randomBook.book_image);
   return (
     <>
       <style>
@@ -18,8 +23,8 @@ const Author = ({}) => {
       <div className=" bg-black flex items-center p-[100px] text-white">
         <div className="w-[400px] h-[400px] border rounded-full mt-3 mb-3 overflow-hidden">
           <img
-            // src = {randomBook.url/image}
-            src="https://wallpapers.com/images/featured/goku-e2us8ym3rraxbnve.jpg"
+            src={randomBook?.book_image}
+            // src="https://wallpapers.com/images/featured/goku-e2us8ym3rraxbnve.jpg"
             alt="Description"
             className="w-full h-full object-cover"
           />
