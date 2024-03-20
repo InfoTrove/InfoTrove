@@ -7,7 +7,6 @@ import ArticlesProvider from "../../context/articlesProvider";
 import Author from "../../components/author";
 const Home = () => {
   const [data, setData] = useState([]);
-  const [author, setAuthor] = useState();
 
   useEffect(() => {
     const doFetch = async () => {
@@ -15,7 +14,7 @@ const Home = () => {
         `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`,
         { cache: "force-cache" }
       );
-      if (data) setData(data.results), console.log(data);
+      if (data) setData(data.results), console.log("top Stories", data);
       if (error) console.log(error);
     };
     doFetch();
@@ -23,13 +22,12 @@ const Home = () => {
 
   return (
     <>
-    
-    <div className=" bg-white ">
-      <ArticlesProvider />
-      <NavBar />
-      <TopStories stories={data} />
-      <Author />
-    </div>
+      <div className=" bg-white ">
+        <ArticlesProvider />
+        <NavBar />
+        <TopStories stories={data} />
+        <Author />
+      </div>
     </>
   );
 };
