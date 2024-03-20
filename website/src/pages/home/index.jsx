@@ -4,10 +4,9 @@ import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ArticlesProvider from "../../context/articlesProvider";
-
+import Author from "../../components/author";
 const Home = () => {
   const [data, setData] = useState([]);
-  const [author, setAuthor] = useState();
 
   useEffect(() => {
     const doFetch = async () => {
@@ -15,19 +14,21 @@ const Home = () => {
         `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`,
         { cache: "force-cache" }
       );
-      if (data) setData(data.results), console.log(data);
+      if (data) setData(data.results), console.log("top Stories", data);
       if (error) console.log(error);
     };
     doFetch();
   }, []);
 
   return (
-    <div className=" bg-white">
-      <ArticlesProvider />
-      <NavBar />
-      <TopStories stories={data} />
-      <div className="w-[500px] h-[500px] border mt-5 m-auto rounded-full "></div>
-    </div>
+    <>
+      <div className=" bg-white ">
+        <ArticlesProvider />
+        <NavBar />
+        <TopStories stories={data} />
+        <Author />
+      </div>
+    </>
   );
 };
 
