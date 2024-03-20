@@ -6,9 +6,9 @@ import { useContext } from "react";
 import ArticlesContext from "../../context/articlesContext";
 
 const Books = ( ) => {
-
     const [error, setError] = useState()
     const {books, setBooks} = useContext(ArticlesContext)
+
     console.log(books)
     return (
         <div>

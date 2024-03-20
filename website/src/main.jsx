@@ -7,8 +7,8 @@ import ArticlesContext from './context/articlesContext.jsx';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <ArticlesContext>
+    <ArticlesContext.Provider value={ArticlesContext}>
       <App />
-    </ArticlesContext>
+    </ArticlesContext.Provider>
   </BrowserRouter>,
 );
