@@ -9,14 +9,18 @@ html::-webkit-scrollbar {
 
 /* Hide scrollbar for IE, Edge, and Firefox */
 html {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 body {
-  overflow-y: scroll; /* Prevents margin collapse issues */
+  overflow-y: scroll;
+  /* Prevents margin collapse issues */
 }
-/* :root {
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -29,4 +33,4 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} */
+}
