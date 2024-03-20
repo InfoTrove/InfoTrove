@@ -6,6 +6,7 @@ import Books from "./pages/books";
 import Movies from "./pages/movies";
 import { Routes, Route } from "react-router-dom";
 import BookDetail from "./pages/book";
+import Articles from "./pages/articles/Articles";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/books" element={<Books />}></Route>
         <Route path="/books/:id" element={<BookDetail />}> </Route>
         <Route path="/movies" element={<Movies />}></Route>
+        <Route path="/articles" element={<Articles />}></Route>
       </Routes>
     </>
   );
