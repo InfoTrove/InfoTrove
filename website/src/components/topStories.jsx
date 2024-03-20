@@ -48,7 +48,7 @@ const TopStories = ({ stories }) => {
         </button>
         <div
           ref={containerRef}
-          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative"
+          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative "
         >
           <ul data-name="articleContainer" className="flex ">
             {stories?.map((story, index) => (
