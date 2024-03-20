@@ -4,6 +4,7 @@ import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Author from "../../components/author";
+
 const Home = () => {
   const [data, setData] = useState([]);
 
