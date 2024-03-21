@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useParams } from "react-router";
-import ArticlesContext from "../../context/articlesContext";
+import BooksContext from "../../context/booksContext";
 import NavBar from "../../components/navbar";
 
 const BookDetail = () => {
     const { id } = useParams()
-    const { books } = useContext(ArticlesContext)
+    const { books } = useContext(BooksContext)
 
     const book = books.find((book) => book.primary_isbn10 === id)
 

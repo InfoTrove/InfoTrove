@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ArticlesContext from "../context/articlesContext";
+import ArticlesContext from "../context/booksContext";
 
 const Author = () => {
   const context = useContext(ArticlesContext);
@@ -18,7 +18,6 @@ const Author = () => {
           />
         </div>
         <ul className="list-none p-0 text-center md:text-left md:absolute md:left-[50%] md:transform md:-translate-x-1/2 lg:left-3/4">
-        
           <li className="border-b border-white pb-2">
             Title: {randomBook?.title}
           </li>
