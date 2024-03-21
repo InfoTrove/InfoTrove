@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="flex">
+    <nav className="flex bg-black text-white">
       <div>
-        <img src={logo} alt="InfoTrove Logo" className=" size-16" />
+        <img src={logo} alt="InfoTrove Logo" className=" size-20" />
       </div>
-      <ul className="flex gap-9 mx-auto max-w-fit">
+      <ul className="flex gap-9 mx-auto max-w-fit absolute right-[250px] top-[30px]">
         <li><Link to="/">Home</Link></li>
-        <li>Articles</li>
-        <li>Books</li>
+        <li><Link to="/articles">Articles</Link></li>
+        <li><Link to="/books">Books</Link></li>
         <li>Movies</li>
+
         <li>
           <form action="">
             <label htmlFor=""></label>

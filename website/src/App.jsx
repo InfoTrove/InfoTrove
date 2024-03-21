@@ -2,15 +2,21 @@ import { useState, useEffect } from "react";
 import "./index.css";
 import handleFetch from "./utils/handleFetch";
 import Home from "./pages/home";
-import Articles from "./pages/Articles";
+import Books from "./pages/books";
+import Movies from "./pages/movies";
 import { Routes, Route } from "react-router-dom";
+import BookDetail from "./pages/book";
+import Articles from "./pages/articles/Articles";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/articles" element={<Products />} />
+        <Route path="/books" element={<Books />}></Route>
+        <Route path="/books/:id" element={<BookDetail />}> </Route>
+        <Route path="/movies" element={<Movies />}></Route>
+        <Route path="/articles" element={<Articles />}></Route>
       </Routes>
     </>
   );
