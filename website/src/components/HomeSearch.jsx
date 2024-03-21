@@ -1,13 +1,12 @@
 import { useState } from "react";
 import handleFetch from "../utils/handleFetch";
+import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
-
-
-// list of valid categories for books - https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp
-// valid categories for articles - https://developer.nytimes.com/docs/articlesearch-product/1/overview
-// movie - horror , action etc 
-  let apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
-
+  // list of valid categories for books - https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp
+  // valid categories for articles - https://developer.nytimes.com/docs/articlesearch-product/1/overview
+  // movie - horror , action etc
+  const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [query, setQuery] = useState("");
@@ -22,7 +21,6 @@ const SearchBar = () => {
   };
 
   const handleInputBlur = () => {
-    // Delay hiding the options a bit to allow click event to register on options
     setTimeout(() => {
       if (!query) {
         setIsActive(false);
@@ -31,9 +29,7 @@ const SearchBar = () => {
   };
 
   const handleKeyDown = async (e) => {
-    // Check if it's the Enter key
     if (e.key === "Enter") {
-      // Check the selectedOption and query to decide which search logic to execute
       let url;
       if (selectedOption === "articles") {
         url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${query}")&api-key=${apiKey}`;
@@ -42,14 +38,35 @@ const SearchBar = () => {
       } else if (selectedOption === "movies") {
         url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&fq=section_name:("Movies")&api-key=${apiKey}`;
       }
+
       if (url) {
         console.log(
-          `searching for ${selectedOption} category : ${query} --> ${url} `
+          `searching for ${selectedOption} category: ${query} --> ${url}`
         );
         const [data, error] = await handleFetch(url);
 
-        if (error) console.error("Error fetching data: ", error);
-        if (data) console.log(data);
+        if (error) {
+          console.error("Error fetching data: ", error);
+          return;
+        }
+
+        if (
+          (data &&
+            data.response &&
+            data.response.docs &&
+            data.response.docs.length > 0) ||
+          (data && data.results)
+        ) {
+          console.log(data);
+          navigate("/results", {
+            state: {
+              data,
+              type: selectedOption, // Directly pass selectedOption as type
+            },
+          });
+        } else {
+          console.log("No data found for the given query.");
+        }
       }
 
       e.preventDefault();
