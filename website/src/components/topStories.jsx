@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-
-=======
 import { useRef } from "react";
 // useRef created a Mutable Reference to a dom element . Making it intractable In React code
 // When an Element is scrollable it gains scroll properties
@@ -9,7 +6,6 @@ import { useRef } from "react";
 // The containerRef contains the mutable reference to the DOM element => scrollable container
 // reference allows for manipulating its methods
 // current in ref is current rendered Element
->>>>>>> 8a3096742b690a9cc9624eb2e91a2b8d7d7e0226
 const TopStories = ({ stories }) => {
   const containerRef = useRef(null);
 
