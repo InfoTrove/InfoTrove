@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TopStories = ({ stories }) => {
   return (
     <div className="w-full m-auto">
