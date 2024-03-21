@@ -7,7 +7,7 @@ import Movies from "./pages/movies";
 import { Routes, Route } from "react-router-dom";
 import BookDetail from "./pages/book";
 import Articles from "./pages/articles/Articles";
-
+import ResPage from "./pages/dynamicPages/results";
 function App() {
   return (
     <>
@@ -17,6 +17,7 @@ function App() {
         <Route path="/books/:id" element={<BookDetail />}> </Route>
         <Route path="/movies" element={<Movies />}></Route>
         <Route path="/articles" element={<Articles />}></Route>
+        <Route path="/results" element={<ResPage />}></Route>
       </Routes>
     </>
   );
