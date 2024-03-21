@@ -8,9 +8,15 @@ const NavBar = () => {
         <img src={logo} alt="InfoTrove Logo" className=" size-20" />
       </div>
       <ul className="flex gap-9 mx-auto max-w-fit absolute right-[250px] top-[30px]">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/articles">Articles</Link></li>
-        <li><Link to="/books">Books</Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/articles">Articles</Link>
+        </li>
+        <li>
+          <Link to="/books">Books</Link>
+        </li>
         <li>Movies</li>
         <SearchBarHome />
       </ul>

@@ -3,30 +3,57 @@ import { useLocation } from "react-router-dom";
 const ResPage = () => {
   const location = useLocation();
   const { data, type } = location.state || {};
-  console.log(data);
-  //console.log("data", data.response.docs[1].multimedia[0].url); articles
-  // console.log('data', data.response.docs) movies
+  console.log("data from resPage", data);
+  console.log("for ->", type);
+  console.log("search: in data");
   let content;
 
   // Handling "movies" type
   if (type === "movies" && data?.response?.docs) {
-    content = data.response.docs.map((movie, index) => (
-      <div key={index}>Movie Img: {movie?.multimedia[0]?.url}</div>
-    ));
+    content = (
+      <div className="flex flex-wrap">
+        {data.response.docs.map((movie, index) => (
+          <div key={index} className="w-1/3 p-4">
+            {movie?.multimedia[1]?.url ? (
+              <img
+                src={`https://${movie?.multimedia[0]?.url}`}
+                alt={movie.title}
+                className="w-full"
+              />
+            ) : (
+              <div>Image not available</div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
   }
-
   // Handling "articles" type
   else if (type === "articles" && data?.response?.docs) {
-    content = data.response.docs.map((article, index) => (
-      <div key={index}>Article Img: {article?.multimedia[0]?.url}</div>
-    ));
+    content = (
+      <div className="flex flex-wrap">
+        {data.response.docs.map((article, index) => (
+          <div key={index} className="w-1/3 p-4">
+            <img
+              src={`https://${article?.multimedia[0]?.url}`}
+              alt={article.title}
+            />
+          </div>
+        ))}
+      </div>
+    );
   }
-
   // Handling "books" type
   else if (type === "books" && data?.results?.books) {
-    content = data.results.books.map((book, index) => (
-      <div key={index}>Book Img: {book?.book_image}</div>
-    ));
+    content = (
+      <div className="flex flex-wrap">
+        {data.results.books.map((book, index) => (
+          <div key={index} className="w-1/3 p-4">
+            <img src={book?.book_image} alt="Book" className="w-full" />
+          </div>
+        ))}
+      </div>
+    );
   }
 
   return <>{content ? content : <div>No data found for {type}</div>}</>;
