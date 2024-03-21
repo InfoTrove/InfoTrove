@@ -1,6 +1,6 @@
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-
+import SearchBarHome from "./HomeSearch";
 const NavBar = () => {
   return (
     <nav className="flex bg-black text-white">
@@ -12,17 +12,7 @@ const NavBar = () => {
         <li><Link to="/articles">Articles</Link></li>
         <li><Link to="/books">Books</Link></li>
         <li>Movies</li>
-
-        <li>
-          <form action="">
-            <label htmlFor=""></label>
-            <input
-              className=" bg-neutral-700 w-96 rounded-full h-8"
-              type="text"
-              name="search"
-            />
-          </form>
-        </li>
+        <SearchBarHome />
       </ul>
     </nav>
   );
