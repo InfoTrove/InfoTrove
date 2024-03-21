@@ -6,7 +6,7 @@ import Books from "./pages/books";
 import Movies from "./pages/movies";
 import { Routes, Route } from "react-router-dom";
 import BookDetail from "./pages/book";
-import Articles from "./pages/articles/Articles";
+import Articles from "./pages/Articles";
 import ResPage from "./pages/dynamicPages/results";
 function App() {
   return (
