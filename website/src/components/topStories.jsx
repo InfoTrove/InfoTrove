@@ -6,7 +6,6 @@ import { useRef } from "react";
 // The containerRef contains the mutable reference to the DOM element => scrollable container
 // reference allows for manipulating its methods
 // current in ref is current rendered Element
-
 const TopStories = ({ stories }) => {
   const containerRef = useRef(null);
 
