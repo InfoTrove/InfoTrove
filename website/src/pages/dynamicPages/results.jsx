@@ -4,10 +4,10 @@ import ArticlesContext from "../../context/articlesContext";
 import { useContext } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 const ResPage = () => {
   const location = useLocation();
   const { data, type } = location.state || {};
+
   console.log("data from resPage", data);
   console.log("for ->", type);
   console.log("search: in data");
@@ -24,10 +24,7 @@ const ResPage = () => {
               {movie?.multimedia[1]?.url ? (
                 articles?.map((article) => (
                   <img
-                    src={
-                      (`https://www.nytimes.com/${article.multimedia[0].url}`,
-                      { cache: "force-cache" })
-                    }
+                    src={`https://www.nytimes.com/${article.multimedia[0]?.url}`}
                     alt={movie.title}
                     className="w-full"
                   />
@@ -48,13 +45,15 @@ const ResPage = () => {
         <div className="flex flex-wrap">
           {data.response.docs.map((article, index) => (
             <div key={index} className="w-1/3 p-4">
-              <img
-                src={
-                  (`https://www.nytimes.com/${article?.multimedia[0]?.url}`,
-                  { cache: "force-cache" })
-                }
-                alt={article.title}
-              />
+              {article?.multimedia[0]?.url ? (
+                <img
+                  src={`https://www.nytimes.com/${article.multimedia[0]?.url}`}
+                  alt={article.headline.main}
+                  className="w-full"
+                />
+              ) : (
+                <div>Image not available</div>
+              )}
             </div>
           ))}
         </div>
