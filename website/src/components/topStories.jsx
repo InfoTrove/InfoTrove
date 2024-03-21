@@ -77,7 +77,6 @@ const TopStories = ({ stories }) => {
         >
           {"--->"}
         </button>
-       
       </div>
     </>
   );

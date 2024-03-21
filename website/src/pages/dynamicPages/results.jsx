@@ -3,8 +3,9 @@ import { useLocation } from "react-router-dom";
 const ResPage = () => {
   const location = useLocation();
   const { data, type } = location.state || {};
-  console.log(data);
-
+  console.log("data from resPage", data);
+  console.log("for ->", type);
+  console.log("search: in data");
   let content;
 
   // Handling "movies" type
@@ -33,7 +34,10 @@ const ResPage = () => {
       <div className="flex flex-wrap">
         {data.response.docs.map((article, index) => (
           <div key={index} className="w-1/3 p-4">
-            <img src={`https://${article?.multimedia[0]?.url}`} alt={article.title} />
+            <img
+              src={`https://${article?.multimedia[0]?.url}`}
+              alt={article.title}
+            />
           </div>
         ))}
       </div>

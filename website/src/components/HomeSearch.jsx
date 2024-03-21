@@ -11,8 +11,8 @@ const SearchBar = () => {
 
   const categoryOptions = {
     movies: ["horror", "Action", "Comedy"],
-    articles: ["Politics", "Technology", "Health"],
-    books: ["Fiction", "Non-Fiction", "Biographies", "Science"],
+    articles: ["Science", "Technology", "Health"],
+    books: ["Hardcover Fiction", "Hardcover Nonfiction", "Sports", "Science"],
   };
 
   const performSearch = async (searchQuery) => {
