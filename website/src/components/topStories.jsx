@@ -54,15 +54,15 @@ const TopStories = ({ stories }) => {
           <ul data-name="articleContainer" className="flex ">
             {stories?.map((story, index) => (
               <li
-                className="relative hover:scale-[1.05] transition-all duration-300 inline-block bg-orange-500 w-96 m-8"
+                className="relative hover:scale-[1.05] transition-all duration-300 inline-block  bg-neutral-700 w-96 m-8"
                 key={index}
               >
-                <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white title-container">
+                <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white title-container rounded-sm">
                   {story.title}
                 </div>
                 <a href={story.url} target="_blank">
                   <img
-                    className="h-96 object-cover"
+                    className="h-96 object-cover rounded-md"
                     src={story.multimedia[0].url}
                     alt={story.title}
                   />

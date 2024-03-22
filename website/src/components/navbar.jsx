@@ -11,13 +11,23 @@ const NavBar = () => {
 
   const categoryOptions = {
     articles: ["Science", "Technology", "Health"],
-    books: ["Hardcover Fiction", "Hardcover Nonfiction", "Sports", "Science"],
+    books: [
+      "Hardcover Fiction",
+      "Hardcover Nonfiction",
+      "Sports",
+      "Science",
+      "Travel",
+      "Family",
+      "Humor",
+    ],
   };
 
   const performFetchAndNavigate = async (selectedOption, searchQuery) => {
     const urlMap = {
       articles: `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${searchQuery}")&api-key=${apiKey}`,
-      books: `https://api.nytimes.com/svc/books/v3/lists/current/${searchQuery.replace(/\s+/g, "-").toLowerCase()}.json?api-key=${apiKey}`,
+      books: `https://api.nytimes.com/svc/books/v3/lists/current/${searchQuery
+        .replace(/\s+/g, "-")
+        .toLowerCase()}.json?api-key=${apiKey}`,
     };
 
     const url = urlMap[selectedOption];
@@ -72,24 +82,39 @@ const NavBar = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li onMouseEnter={() => setShowArticlesDropdown(true)} onMouseLeave={() => setShowArticlesDropdown(false)}>
-            <Link to="/articles">Articles</Link> {/* Updated path for Articles */}
+          <li
+            onMouseEnter={() => setShowArticlesDropdown(true)}
+            onMouseLeave={() => setShowArticlesDropdown(false)}
+          >
+            <Link to="/articles">Articles</Link>{" "}
+            {/* Updated path for Articles */}
             {showArticlesDropdown && (
               <div className="dropdown-menu">
                 {categoryOptions.articles.map((article) => (
-                  <button key={article} onClick={() => performFetchAndNavigate("articles", article)} className="dropdown-item">
+                  <button
+                    key={article}
+                    onClick={() => performFetchAndNavigate("articles", article)}
+                    className="dropdown-item"
+                  >
                     {article}
                   </button>
                 ))}
               </div>
             )}
           </li>
-          <li onMouseEnter={() => setShowBooksDropdown(true)} onMouseLeave={() => setShowBooksDropdown(false)}>
+          <li
+            onMouseEnter={() => setShowBooksDropdown(true)}
+            onMouseLeave={() => setShowBooksDropdown(false)}
+          >
             <Link to="/books">Books</Link> {/* Updated path for Books */}
             {showBooksDropdown && (
               <div className="dropdown-menu">
                 {categoryOptions.books.map((book) => (
-                  <button key={book} onClick={() => performFetchAndNavigate("books", book)} className="dropdown-item">
+                  <button
+                    key={book}
+                    onClick={() => performFetchAndNavigate("books", book)}
+                    className="dropdown-item"
+                  >
                     {book}
                   </button>
                 ))}
