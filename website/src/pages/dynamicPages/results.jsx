@@ -1,94 +1,105 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import NavBar from "../../components/navbar";
 import ArticlesContext from "../../context/articlesContext";
 import { useContext } from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
 const ResPage = () => {
   const location = useLocation();
   const { data, type } = location.state || {};
-
-  console.log("data from resPage", data);
-  console.log("for ->", type);
-  console.log("search: in data");
-  let content;
   const { articles } = useContext(ArticlesContext);
+  const fallBackImage = "https://demofree.sirv.com/nope-not-here.jpg?w=150";
+  console.log(data);
+  let content;
 
-  // Handling "movies" type
-  if (type === "movies" && data?.response?.docs) {
-    content = (
-      <div>
+  switch (type) {
+    case "movies":
+      content = data?.response?.docs ? (
         <div className="flex flex-wrap">
           {data.response.docs.map((movie, index) => (
             <div key={index} className="w-1/3 p-4">
-              {movie?.multimedia[1]?.url ? (
-                articles?.map((article) => (
-                  <img
-                    src={`https://www.nytimes.com/${article.multimedia[0]?.url}`}
-                    alt={movie.title}
-                    className="w-full"
-                  />
-                ))
-              ) : (
-                <div>Image not available</div>
-              )}
+              <img
+                src={
+                  movie.multimedia?.[0]?.url
+                    ? `https://www.nytimes.com/${movie.multimedia[0].url}`
+                    : fallBackImage
+                }
+                alt={movie.title}
+                className="w-full"
+              />
             </div>
           ))}
         </div>
-      </div>
-    );
-  }
-  // Handling "articles" type
-  else if (type === "articles" && data?.response?.docs) {
-    content = (
-      <div>
+      ) : (
+        <div>No movie data available.</div>
+      );
+      break;
+
+    case "articles":
+      content = data?.response?.docs ? (
         <div className="flex flex-wrap">
           {data.response.docs.map((article, index) => (
             <div key={index} className="w-1/3 p-4">
-              {article?.multimedia[0]?.url ? (
-                <img
-                  src={`https://www.nytimes.com/${article.multimedia[0]?.url}`}
-                  alt={article.headline.main}
-                  className="w-full"
-                />
-              ) : (
-                <div>Image not available</div>
-              )}
+              <Card style={{ width: "18rem" }} className="border-solid">
+                <a href={article.web_url} target="_blank">
+                  <Card.Img
+                    variant="top"
+                    src={
+                      article.multimedia?.[0]?.url
+                        ? `https://www.nytimes.com/${article.multimedia[0]?.url}`
+                        : fallBackImage
+                    }
+                    alt={article.headline.main}
+                  />
+                </a>
+                <Card.Body className="p-4">
+                  <Card.Title className="font-bold text-lg">
+                    {article.headline?.main}
+                  </Card.Title>
+                  <Card.Text className="text-sm">{article?.abstract}</Card.Text>
+                </Card.Body>
+              </Card>
             </div>
           ))}
         </div>
-      </div>
-    );
-  }
-  // Handling "books" type
-  else if (type === "books" && data?.results?.books) {
-    content = (
-      <div>
+      ) : (
+        <div>No article data available.</div>
+      );
+      break;
+
+    case "books":
+      content = data?.results?.books ? (
         <div className="flex flex-wrap">
           {data.results.books.map((book, index) => (
-            <Link to={`/books/${book.primary_isbn10}`}>
+            <Link key={index} to={`/books/${book.primary_isbn10}`}>
               <Card style={{ width: "18rem" }} className="border-solid">
                 <Card.Img
                   variant="top"
-                  src={book.book_image}
+                  src={book.book_image ? book.book_image : fallBackImage}
+                  alt={book.title}
                   className="size-28"
                 />
                 <Card.Body>
-                  <Card.Title>{book.Title}</Card.Title>
+                  <Card.Title>{book.title}</Card.Title>
                   <Card.Text>{book.description}</Card.Text>
                 </Card.Body>
               </Card>
             </Link>
           ))}
         </div>
-      </div>
-    );
+      ) : (
+        <div>No book data available.</div>
+      );
+      break;
+
+    default:
+      content = <div>No data found for {type}</div>;
   }
 
   return (
     <div>
       <NavBar />
-      <>{content ? content : <div>No data found for {type}</div>}</>
+      {content}
     </div>
   );
 };

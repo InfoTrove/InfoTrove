@@ -4,7 +4,7 @@ import handleFetch from "../../utils/handleFetch";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Author from "../../components/author";
-
+import Footer from "../../components/footer";
 const Home = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -24,6 +24,7 @@ const Home = () => {
         <NavBar />
         <TopStories stories={data} />
         <Author />
+        <Footer />
       </div>
     </>
   );
