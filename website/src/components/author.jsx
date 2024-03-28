@@ -1,5 +1,22 @@
 import React, { useContext } from "react";
 import ArticlesContext from "../context/booksContext";
+import { useState } from "react";
+
+export function useIsVisible(ref) {
+  const [isIntersecting, setIntersecting] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIntersecting(entry.isIntersecting)
+    }
+    );
+    observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref]);
+  return isIntersecting;
+}
 
 const Author = () => {
   const context = useContext(ArticlesContext);
@@ -9,7 +26,7 @@ const Author = () => {
     : null;
   return (
     <>
-      <div className="bg-black flex flex-col items-center p-5 text-white md:flex-row md:items-center md:p-20">
+      <div className="bg-black flex flex-col items-center p-5 text-white md:flex-row md:items-center md:p-[200px]">
         <div className="w-80 h-80 border border-white rounded-full my-3 overflow-hidden md:w-[400px] md:h-[400px]">
           <img
             src={randomBook?.book_image}
