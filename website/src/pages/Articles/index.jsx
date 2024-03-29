@@ -14,7 +14,7 @@ const Articles = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex flex-wrap gap-10 p-[50px]">
+      <ul className="flex flex-wrap gap-10 p-[50px] border-x-4">
         {articles?.map((article, index) => (
           <li key={index} className="border-solid" style={{ width: "18rem" }}>
             <a href={`${article.web_url}`}>

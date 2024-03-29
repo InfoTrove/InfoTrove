@@ -1,4 +1,6 @@
 import logo from "../assets/logo.png";
+import github from "../assets/github.png";
+import linkedin from "../assets/linkedin.png";
 const Footer = ({ scrollToTop }) => {
   return (
     <>
@@ -18,10 +20,48 @@ const Footer = ({ scrollToTop }) => {
           data-name="contact Info"
           className="flex flex-col justify-around p-1 ml-6 mt-10 mr-8 w-[21rem] h-[8.6rem] bg-[rgb(51,51,51)] border-red-600 rounded-lg text-white text-center"
         >
-          <p>Contacts :</p>
-          <p>Creators :</p>
-          <p>Ahmad Hamza - ahmadhamza052005@gmail.com</p>
-          <p>Mohamed Sy - mo@gmail.com</p>
+          {/* <p>Contacts :</p>
+          <p>Creators :</p> */}
+          <div className="flex items-center gap-3">
+            <div>
+              <a
+                href="https://github.com/MohamedSy1"
+                className="flex items-center gap-3"
+              >
+                <img src={github} alt="Mohamed gitHub Profile" className="w-10" />
+                <p>MohamedSy1</p>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.linkedin.com/in/mohamed-s-179b20230/"
+                className="flex items-center gap-3"
+              >
+                <img src={linkedin} alt="Mohamed linkedIn profile" className="w-10" />
+                <p>Mohamed Sy</p>
+              </a>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/AhmxdNYC"
+                className="flex items-center gap-3"
+              >
+                <img src={github} alt="Ahmad githbub profile" className="w-10" />
+                <p>AhmadNYC</p>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.linkedin.com/in/ahmad-hamza-/"
+                className="flex items-center gap-3"
+              >
+                <img src={linkedin} alt="Ahmad Github profile" className="w-10" />
+                <p>Ahmad Hamza</p>
+              </a>
+            </div>
+          </div>
         </div>
         <div
           data-name="Info General"
