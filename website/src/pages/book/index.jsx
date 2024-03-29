@@ -17,7 +17,7 @@ const BookDetail = () => {
         <div className="text-center p-5">
           <h1 className="text-xl underline mb-4">Book Not Found</h1>
           <p>
-            The requested book could not be found. Please try another search.
+            The requested book could not be found. Please try another Book.
           </p>
           <button
             onClick={() => navigate(-1)}
