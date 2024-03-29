@@ -2,10 +2,16 @@ import logo from "../assets/logo.png";
 const Footer = ({ scrollToTop }) => {
   return (
     <>
-      <div className="bg-[rgb(201,158,79)] h-[325px] md:p-24"></div>
+      {/* <div className="bg-[rgb(201,158,79)] h-[325px] md:p-24"></div> */}
       <div className="flex bg-[rgb(204,172,171)] h-[200px] ">
         <div className="flex items-center justify-center mt-10 ml-16 bg-black w-16 h-16 rounded-full text-white">
-          <img data-name="logoFooter" src={logo} alt="" onClick={scrollToTop} className="cursor-pointer" />
+          <img
+            data-name="logoFooter"
+            src={logo}
+            alt=""
+            onClick={scrollToTop}
+            className="cursor-pointer"
+          />
         </div>
 
         <div

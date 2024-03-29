@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import handleFetch from "../../utils/handleFetch";
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 import { Button, Card } from "react-bootstrap";
 import { useContext } from "react";
 import booksContext from "../../context/booksContext";
@@ -30,6 +31,7 @@ const Books = () => {
           </Link>
         ))}
       </ul>
+      <Footer />;
     </div>
   );
 };

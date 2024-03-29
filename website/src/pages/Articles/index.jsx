@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer"
 import handleFetch from "../../utils/handleFetch";
 import ArticlesContext from "../../context/articlesContext";
 import { useContext } from "react";
@@ -31,6 +32,7 @@ const Articles = () => {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 };
