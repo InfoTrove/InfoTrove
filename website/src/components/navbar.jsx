@@ -10,7 +10,7 @@ const NavBar = () => {
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health"],
+    articles: ["Science", "Technology", "Health","Travel"],
     books: [
       "Hardcover Fiction",
       "Hardcover Nonfiction",
