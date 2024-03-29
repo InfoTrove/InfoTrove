@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import handleFetch from "../utils/handleFetch"; // Ensure this is the correct path
-
-const NavBar = () => {
+import { forwardRef } from "react";
+const NavBar = forwardRef((props, ref) => {
   const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
   const navigate = useNavigate();
   const [showArticlesDropdown, setShowArticlesDropdown] = useState(false);
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health"],
+    articles: ["Science", "Technology", "Health","Travel"],
     books: [
       "Hardcover Fiction",
       "Hardcover Nonfiction",
@@ -74,7 +74,7 @@ const NavBar = () => {
           background-color: #f1f1f1;
         }
       `}</style>
-      <nav className="flex bg-black text-white">
+      <nav ref={ref} className="flex bg-black text-white">
         <div>
           <img src={logo} alt="InfoTrove Logo" className="size-20" />
         </div>
@@ -125,6 +125,6 @@ const NavBar = () => {
       </nav>
     </>
   );
-};
+})
 
 export default NavBar;

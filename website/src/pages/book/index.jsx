@@ -1,15 +1,34 @@
 import { useContext } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import BooksContext from "../../context/booksContext";
 import NavBar from "../../components/navbar";
 
 const BookDetail = () => {
   const { id } = useParams();
   const { books } = useContext(BooksContext);
-
+  const navigate = useNavigate();
   const book = books.find((book) => book.primary_isbn10 === id);
 
-  if (!book) return <h1>Loading!!</h1>;
+  if (!book) {
+    // changed from showing a loading!! return to this
+    return (
+      <div>
+        <NavBar />
+        <div className="text-center p-5">
+          <h1 className="text-xl underline mb-4">Book Not Found</h1>
+          <p>
+            The requested book could not be found. Please try another Book.
+          </p>
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

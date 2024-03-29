@@ -1,11 +1,12 @@
 import TopStories from "../../components/topStories";
 import NavBar from "../../components/navbar";
 import handleFetch from "../../utils/handleFetch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import Author from "../../components/author";
 import Footer from "../../components/footer";
 const Home = () => {
+  const navbarRef = useRef(null);
   const [data, setData] = useState([]);
   useEffect(() => {
     const doFetch = async () => {
@@ -21,10 +22,14 @@ const Home = () => {
   return (
     <>
       <div className=" bg-white ">
-        <NavBar />
+        <NavBar ref={navbarRef} />
         <TopStories stories={data} />
         <Author />
-        <Footer />
+        <Footer
+          scrollToTop={() =>
+            navbarRef.current?.scrollIntoView({ behavior: "smooth" })
+          }
+        />
       </div>
     </>
   );

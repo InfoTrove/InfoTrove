@@ -81,7 +81,7 @@ const ResPage = () => {
                 />
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Text><Card.Text>{book.description ? book.description : "No Description Available"}</Card.Text></Card.Text>
                 </Card.Body>
               </Card>
             </Link>

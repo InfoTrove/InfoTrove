@@ -42,7 +42,7 @@ const TopStories = ({ stories }) => {
       <div className="relative flex justify-center items-center hide-scrollbar bg-neutral-700">
         <button
           data-name="leftButton"
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 hover:bg-red-700"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
           onClick={scrollLeft}
         >
           {"<---"}
@@ -73,7 +73,7 @@ const TopStories = ({ stories }) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 hover:bg-red-700"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
           onClick={scrollRight}
         >
           {"--->"}
