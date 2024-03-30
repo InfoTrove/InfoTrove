@@ -56,9 +56,14 @@ const BookDetail = () => {
           </div>
         </div>
         <div className="flex-none">
-          <img src={book.book_image} alt={book.title} className="max-w-xs" />
+          <img
+            src={book.book_image}
+            alt={book.title}
+            className="max-w-xs"
+          />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

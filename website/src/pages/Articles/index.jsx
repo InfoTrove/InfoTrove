@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/navbar";
-import Footer from "../../components/footer"
+import Footer from "../../components/footer";
 import handleFetch from "../../utils/handleFetch";
 import ArticlesContext from "../../context/articlesContext";
 import { useContext } from "react";
@@ -14,9 +14,13 @@ const Articles = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex flex-wrap gap-10 p-[50px] border-x-4">
+      <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
         {articles?.map((article, index) => (
-          <li key={index} className="border-solid" style={{ width: "18rem" }}>
+          <li
+            key={index}
+            className="border bg-white text-black hover:scale-[1.05] transition-all duration-300"
+            style={{ width: "18rem" }}
+          >
             <a href={`${article.web_url}`}>
               <img
                 src={`https://www.nytimes.com/${article.multimedia[0].url}`}
