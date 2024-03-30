@@ -4,18 +4,25 @@
 // The containerRef contains the mutable reference to the DOM element => scrollable container
 // reference allows for manipulating its methods
 // current in ref is current rendered Element
-import { Link} from "react-router-dom";
-import React, { forwardRef } from 'react';
+import { Link } from "react-router-dom";
+import React, { forwardRef, useEffect } from "react";
+import { useRef } from "react";
 const TopStories = forwardRef(({ stories }, ref) => {
+  const containerRef = useRef(null);
+  const scrollAmount = 895;
+
   const scrollLeft = () => {
-    if (ref.current) {
-      ref.current.scrollLeft -= 900;
+    if (containerRef.current) {
+      containerRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
-    if (ref.current) {
-      ref.current.scrollLeft += 900;
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
@@ -40,15 +47,16 @@ const TopStories = forwardRef(({ stories }, ref) => {
       <div className="relative flex justify-center items-center hide-scrollbar bg-neutral-700 mt-[5rem]">
         <button
           data-name="leftButton"
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
           onClick={scrollLeft}
         >
           {"<---"}
         </button>
         <div
-          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[95%] py-3 hide-scrollbar relative "
+          ref={containerRef}
+          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[93%] py-3 hide-scrollbar relative mx-auto "
         >
-          <ul data-name="articleContainer" className="flex ">
+          <ul data-name="articleContainer" className="flex mx-auto">
             {stories?.map((story, index) => (
               <li
                 className="relative hover:scale-[1.05] transition-all duration-300 inline-block  bg-neutral-700 w-96 m-8"
@@ -70,7 +78,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
           onClick={scrollRight}
         >
           {"--->"}
