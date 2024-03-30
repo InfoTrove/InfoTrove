@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import handleFetch from "../../utils/handleFetch";
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 import { Button, Card } from "react-bootstrap";
 import { useContext } from "react";
 import booksContext from "../../context/booksContext";
@@ -13,23 +14,27 @@ const Books = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex flex-wrap gap-10 p-[50px]">
+      <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
         {books?.map((book) => (
           <Link to={`/books/${book.primary_isbn10}`}>
-            <Card style={{ width: "18rem" }} className="border-solid">
-              <Card.Img
-                variant="top"
+            <li
+              className="border bg-white text-black hover:scale-[1.05] transition-all duration-300 max-w-fit mx-auto"
+              style={{ width: "18rem" }}
+            >
+              <img
                 src={book.book_image}
-                className="size-28"
+                className="size-full"
+                style={{ height: "auto", maxWidth: "100%" }}
               />
-              <Card.Body>
-                <Card.Title>{book.Title}</Card.Title>
-                <Card.Text>{book.description}</Card.Text>
-              </Card.Body>
-            </Card>
+              <div className="">
+                <h3 className="font-bold text-lg">{book.Title}</h3>
+                <p>{book.description}</p>
+              </div>
+            </li>
           </Link>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 };

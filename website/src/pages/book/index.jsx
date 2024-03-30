@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import BooksContext from "../../context/booksContext";
 import NavBar from "../../components/navbar";
-
+import Footer from "../../components/footer";
 const BookDetail = () => {
   const { id } = useParams();
   const { books } = useContext(BooksContext);
@@ -16,9 +16,7 @@ const BookDetail = () => {
         <NavBar />
         <div className="text-center p-5">
           <h1 className="text-xl underline mb-4">Book Not Found</h1>
-          <p>
-            The requested book could not be found. Please try another Book.
-          </p>
+          <p>The requested book could not be found. Please try another Book.</p>
           <button
             onClick={() => navigate(-1)}
             className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -58,9 +56,14 @@ const BookDetail = () => {
           </div>
         </div>
         <div className="flex-none">
-          <img src={book.book_image} alt={book.title} className="max-w-xs" />
+          <img
+            src={book.book_image}
+            alt={book.title}
+            className="max-w-xs"
+          />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
