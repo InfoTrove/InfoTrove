@@ -10,7 +10,7 @@ const NavBar = forwardRef((props, ref) => {
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health","Travel"],
+    articles: ["Science", "Technology", "Health", "Travel"],
     books: [
       "Hardcover Fiction",
       "Hardcover Nonfiction",
@@ -49,6 +49,13 @@ const NavBar = forwardRef((props, ref) => {
   return (
     <>
       <style>{`
+      .navbar-fixed {
+        position: fixed;
+        top: 0px; /* Retain the original top offset */
+        right: 0; /* Ensure the navbar extends to the right edge of the viewport */
+        left: 0; /* Stretch navbar across the full width to manage internal alignment */
+        z-index: 10; /* Keep navbar above other content */
+      }
         .dropdown-menu {
           display: none;
           position: absolute;
@@ -74,7 +81,8 @@ const NavBar = forwardRef((props, ref) => {
           background-color: #f1f1f1;
         }
       `}</style>
-      <nav ref={ref} className="flex bg-black text-white">
+
+      <nav ref={ref} className="navbar-fixed flex bg-black text-white">
         <div>
           <img src={logo} alt="InfoTrove Logo" className="size-20" />
         </div>
@@ -125,6 +133,6 @@ const NavBar = forwardRef((props, ref) => {
       </nav>
     </>
   );
-})
+});
 
 export default NavBar;
