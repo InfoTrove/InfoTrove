@@ -8,13 +8,15 @@ const Footer = ({ scrollToTop }) => {
       {/* <div className="bg-[rgb(201,158,79)] h-[325px] md:p-24"></div> */}
       <div className="flex bg-black h-[200px] ">
         <div className="items-center justify-center mt-10 ml-16 bg-black w-16 h-16 rounded-full text-white">
-          <img
-            data-name="logoFooter"
-            src={logo}
-            alt=""
-            onClick={scrollToTop}
-            className="absolute cursor-pointer scale-75 left-[1rem] bottom-[-47rem]"
-          />
+          <div className="scale-[3] mt-10 ml-4">
+            <img
+              data-name="logoFooter"
+              src={logo}
+              alt=""
+              onClick={scrollToTop}
+              className="cursor-pointer"
+            />
+          </div>
         </div>
         <div
           data-name="contact Info"
