@@ -14,7 +14,7 @@ const Books = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
+      <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh] mt-[5rem]">
         {books?.map((book) => (
           <Link to={`/books/${book.primary_isbn10}`}>
             <li

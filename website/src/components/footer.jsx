@@ -13,7 +13,7 @@ const Footer = ({ scrollToTop }) => {
             src={logo}
             alt=""
             onClick={scrollToTop}
-            className="cursor-pointer"
+            className="absolute cursor-pointer scale-75 left-[1rem] bottom-[-47rem]"
           />
         </div>
         <div

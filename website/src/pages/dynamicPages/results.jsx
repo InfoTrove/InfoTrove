@@ -16,7 +16,7 @@ const ResPage = () => {
   switch (type) {
     case "articles":
       content = data?.response?.docs ? (
-        <div>
+        <div className="mt-[5rem]">
           <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
             {data.response.docs?.map((article, index) => (
               <li
@@ -54,7 +54,7 @@ const ResPage = () => {
 
     case "books":
       content = data?.results?.books ? (
-        <div>
+        <div className="mt-[5rem]">
           <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
             {data.results.books.map((book, index) => (
               <Link key={index} to={`/books/${book.primary_isbn10}`}>

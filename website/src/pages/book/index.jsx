@@ -14,7 +14,7 @@ const BookDetail = () => {
     return (
       <div>
         <NavBar />
-        <div className="text-center p-5">
+        <div className="text-center p-5 mt-[5rem]">
           <h1 className="text-xl underline mb-4">Book Not Found</h1>
           <p>The requested book could not be found. Please try another Book.</p>
           <button
@@ -31,7 +31,7 @@ const BookDetail = () => {
   return (
     <div>
       <NavBar />
-      <div className="flex justify-between p-5">
+      <div className="flex justify-between p-5 mt-[5rem]">
         <div className="flex-1">
           <div>
             <h1 className="underline text-2xl mb-4">Title : {book.title}</h1>
