@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import handleFetch from "../utils/handleFetch"; // Ensure this is the correct path
+import downArrow from "../assets/downArrow.png";
 import { forwardRef } from "react";
+import { Dropdown } from "react-bootstrap";
 const NavBar = forwardRef((props, ref) => {
   const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ const NavBar = forwardRef((props, ref) => {
   };
 
   return (
-    <>
+    <div className="">
       <style>{`
       .navbar-fixed {
         position: fixed;
@@ -66,6 +68,7 @@ const NavBar = forwardRef((props, ref) => {
           grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); /* Adjust column width as needed */
           gap: 10px;
           z-index: 1;
+          transition: .7s;
         }
         .dropdown-item {
           background-color: transparent;
@@ -79,6 +82,7 @@ const NavBar = forwardRef((props, ref) => {
         }
         .dropdown-item:hover {
           background-color: #f1f1f1;
+          transition: 1.7s;
         }
       `}</style>
 
@@ -86,7 +90,7 @@ const NavBar = forwardRef((props, ref) => {
         <div>
           <img src={logo} alt="InfoTrove Logo" className="size-20" />
         </div>
-        <ul className="flex gap-9 mx-auto max-w-fit absolute right-[250px] top-[30px] mr-[30%]">
+        <ul className="flex gap-9 mx-auto max-w-fit items-center">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -114,7 +118,7 @@ const NavBar = forwardRef((props, ref) => {
             onMouseEnter={() => setShowBooksDropdown(true)}
             onMouseLeave={() => setShowBooksDropdown(false)}
           >
-            <Link to="/books">Books</Link> {/* Updated path for Books */}
+            <Link to="/books">Book</Link> {/* Updated path for Books */}
             {showBooksDropdown && (
               <div className="dropdown-menu">
                 {categoryOptions.books.map((book) => (
@@ -131,7 +135,7 @@ const NavBar = forwardRef((props, ref) => {
           </li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 });
 

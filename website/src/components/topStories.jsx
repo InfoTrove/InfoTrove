@@ -22,7 +22,7 @@ const TopStories = ({ stories }) => {
   };
 
   return (
-    <>
+    <div>
       <style>
         {`
           .hide-scrollbar::-webkit-scrollbar {
@@ -79,7 +79,7 @@ const TopStories = ({ stories }) => {
           {"--->"}
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
