@@ -14,7 +14,7 @@ const Articles = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
+      <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh] mt-[5rem]">
         {articles?.map((article, index) => (
           <li
             key={index}
