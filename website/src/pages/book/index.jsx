@@ -12,7 +12,7 @@ const BookDetail = () => {
   if (!book) {
     // changed from showing a loading!! return to this
     return (
-      <div>
+      <div className="">
         <NavBar />
         <div className="text-center p-5 mt-[5rem]">
           <h1 className="text-xl underline mb-4">Book Not Found</h1>
@@ -56,11 +56,7 @@ const BookDetail = () => {
           </div>
         </div>
         <div className="flex-none">
-          <img
-            src={book.book_image}
-            alt={book.title}
-            className="max-w-xs"
-          />
+          <img src={book.book_image} alt={book.title} className="max-w-xs" />
         </div>
       </div>
       <Footer />
