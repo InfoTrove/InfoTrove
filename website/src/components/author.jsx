@@ -34,16 +34,16 @@ const Author = () => {
           />
         </div>
         <ul className="list-none p-0 text-center md:text-left md:absolute md:left-[50%] md:transform md:-translate-x-1/2 lg:left-3/4">
-          <li className="border-b border-white pb-2">
+          <li className="border-b border-white pb-2 text-xl">
             Title: {randomBook?.title}
           </li>
-          <li className="border-b border-white pb-2">
+          <li className="border-b border-white pb-2 text-xl">
             Author: {randomBook?.author}
           </li>
-          <li className="border-b border-white pb-2">
+          <li className="border-b border-white pb-2 text-xl">
             Description: {randomBook?.description}
           </li>
-          <li className="border-b border-white pb-2">
+          <li className="border-b border-white pb-2 text-3xl">
             Publisher: {randomBook?.publisher}
           </li>
         </ul>
