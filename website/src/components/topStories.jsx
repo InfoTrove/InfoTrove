@@ -44,30 +44,30 @@ const TopStories = forwardRef(({ stories }, ref) => {
           }
         `}
       </style>
-      <div className="relative flex justify-center items-center hide-scrollbar bg-neutral-700 mt-[5rem]">
+      <div className="hide-scrollbar relative mt-[5rem] flex items-center justify-center bg-neutral-700">
         <button
           data-name="leftButton"
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
+          className="absolute left-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
           onClick={scrollLeft}
         >
           {"<---"}
         </button>
         <div
           ref={containerRef}
-          className="flex transition-all duration-300 overflow-x-auto whitespace-nowrap max-w-[93%] py-3 hide-scrollbar relative mx-auto "
+          className="hide-scrollbar relative mx-auto flex max-w-[93%] overflow-x-auto whitespace-nowrap py-3 transition-all duration-300 "
         >
-          <ul data-name="articleContainer" className="flex mx-auto">
+          <ul data-name="articleContainer" className="mx-auto flex">
             {stories?.map((story, index) => (
               <li
-                className="relative hover:scale-[1.05] transition-all duration-300 inline-block  bg-neutral-700 w-96 m-8"
+                className="relative m-8 inline-block w-96 bg-neutral-700  transition-all duration-300 hover:scale-[1.05]"
                 key={index}
               >
-                <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white title-container rounded-sm">
+                <div className="title-container absolute bottom-0 left-0 rounded-sm bg-black bg-opacity-50 p-4 text-white">
                   {story.title}
                 </div>
                 <a href={story.url} target="_blank" rel="noopener noreferrer">
                   <img
-                    className="h-96 object-cover rounded-md"
+                    className="h-96 rounded-md object-cover"
                     src={story.multimedia[0].url}
                     alt={story.title}
                   />
@@ -78,7 +78,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 hover:bg-neutral-600"
+          className="absolute right-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
           onClick={scrollRight}
         >
           {"--->"}
