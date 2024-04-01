@@ -80,12 +80,12 @@ To ensure that we can complete all core features of the application in 1 week, w
 
 Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
 
-[Wireframe for page 1]
+[Home Page]
 ![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/f591361a-ec97-4780-a060-66043dbad480)
 
 
-[Wireframe for page 2]
+[Articles Page]
 ![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/8c118b72-6228-48b6-9e75-e6e0184deda9)
 
-[Wireframe for page 3]
+[Individual Book Page]
 ![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/796a97cd-979e-4bc3-bd7a-235b13c4aaf1)
