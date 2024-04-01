@@ -46,37 +46,46 @@ To ensure that we can complete all core features of the application in 1 week, w
 
 - [ ] Setting up GitHub organization
 - [ ] Setting up project folders
-- [ ] Creating navigation bar
+- [ ] Creating a navigation bar
 - [ ] Creating WireFrame
 
 **Day 2**
 
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] Started creating the home component 
+- [ ] Started creating & styling Top Stories Section
+- [ ] Started Navigation Bar 
 
 **Day 3**
 
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ]  Added click listeners to Top stories
+- [ ]  Created a random Author section within home
+- [ ]  Create toggle option Searchbar within Home 
+
 
 **Day 4**
 
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ]  Created the footer section 
+- [ ]  Created Dynamic Path based on the selected category within articles or books 
+- [ ]  Ticket description and due date
+- [ ]  Styled the main articles and books pages 
+
 
 **Day 5**
 
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ]  Finished Up On Styling 
+- [ ]  Switch the search bar to a hover over the category 
+
 
 ## Wireframes of each page in your application
 
 Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
 
 [Wireframe for page 1]
+![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/f591361a-ec97-4780-a060-66043dbad480)
+
 
 [Wireframe for page 2]
+![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/8c118b72-6228-48b6-9e75-e6e0184deda9)
+
+[Wireframe for page 3]
+![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/796a97cd-979e-4bc3-bd7a-235b13c4aaf1)
