@@ -10,16 +10,19 @@ const BookDetail = () => {
   const book = books.find((book) => book.primary_isbn10 === id);
 
   if (!book) {
-    // changed from showing a loading!! return to this
     return (
       <div className="">
         <NavBar />
-        <div className="text-center p-5 mt-[5rem]">
-          <h1 className="text-xl underline mb-4">Book Not Found</h1>
-          <p>The requested book could not be found. Please try another Book.</p>
+        <div className="text-center p-5 pt-20">
+          <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+            Book Not Found
+          </h1>
+          <p className="text-gray-600">
+            The requested book could not be found. Please try another book.
+          </p>
           <button
             onClick={() => navigate(-1)}
-            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded transition duration-150 ease-in-out"
           >
             Go Back
           </button>
@@ -29,37 +32,41 @@ const BookDetail = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <div className="flex justify-between p-5 mt-[5rem]">
-        <div className="flex-1">
-          <div>
-            <h1 className="underline text-2xl mb-4">Title : {book.title}</h1>
-          </div>
-          <div>
-            <h3 className="underline text-xl mb-2">Description</h3>
-            <p className="underline mb-4">{book.description}</p>
-          </div>
-          <div>
-            <h3 className="underline text-xl mb-2">Buy Links:</h3>
+      <div className="container mx-auto px-4 py-28">
+        <div className="flex gap-8 items-start">
+          <img
+            src={book.book_image}
+            alt={book.title}
+            className="shadow-lg rounded-lg max-w-xs"
+          />
+          <div className="flex-1">
+            <h1 className="text-4xl font-bold text-white mb-6">{book.title}</h1>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Description
+            </h3>
+            <p className="text-white mb-8">{book.description}</p>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Buy Links:
+            </h3>
             <ul>
               {book.buy_links.map((link, index) => (
-                <li key={index} className="mb-2">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <a href={link.url} className="underline">
-                      {link.name}
-                    </a>
-                  </button>
+                <li key={index} className="mb-4">
+                  <a
+                    href={link.url}
+                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded transition duration-150 ease-in-out"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="flex-none">
-          <img src={book.book_image} alt={book.title} className="max-w-xs" />
-        </div>
       </div>
-      <Footer />
     </div>
   );
 };
