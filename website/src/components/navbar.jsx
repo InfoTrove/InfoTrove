@@ -5,6 +5,8 @@ import handleFetch from "../utils/handleFetch"; // Ensure this is the correct pa
 import downArrow from "../assets/downArrow.png";
 import { forwardRef } from "react";
 import { Dropdown } from "react-bootstrap";
+import { motion } from 'framer-motion' 
+
 const NavBar = forwardRef(({scrollToTop}, ref) => {
   const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health", "Travel"],
+    articles: ["Science", "Technology", "Health", "Travel"],  
     books: [
       "Hardcover Fiction",
       "Hardcover Nonfiction",
@@ -100,7 +102,12 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
         className="navbar-fixed flex bg-black text-white opacity-85"
       >
         <div>
-          <img src={logo} alt="InfoTrove Logo" className="size-20 cursor-pointer" onClick={scrollToTop} />
+          <img
+            src={logo}
+            alt="InfoTrove Logo"
+            className="size-20 cursor-pointer"
+            onClick={scrollToTop}
+          />
         </div>
         <ul className="flex gap-9 mx-auto max-w-fit items-center">
           <li>
@@ -113,7 +120,10 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
             <Link to="/articles">Articles</Link>{" "}
             {/* Updated path for Articles */}
             {showArticlesDropdown && (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 3 }}
+                animate={{ opacity: 300, y: 0 }}
+                exit={{ opacity: 0, y: 3 }}
                 className={`dropdown-menu ${
                   showArticlesDropdown ? "show" : ""
                 }`}
@@ -127,7 +137,7 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
                     {article}
                   </button>
                 ))}
-              </div>
+              </motion.div>
             )}
           </li>
           <li
@@ -136,7 +146,10 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
           >
             <Link to="/books">Book</Link> {/* Updated path for Books */}
             {showBooksDropdown && (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 3 }}
+                animate={{ opacity: 300, y: 0 }}
+                exit={{ opacity: 0, y: 3 }}
                 className={`dropdown-menu ${showBooksDropdown ? "show" : ""}`}
               >
                 {categoryOptions.books.map((book) => (
@@ -148,7 +161,7 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
                     {book}
                   </button>
                 ))}
-              </div>
+              </motion.div>
             )}
           </li>
         </ul>
