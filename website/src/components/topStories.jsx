@@ -10,7 +10,7 @@ import { useRef } from "react";
 const TopStories = forwardRef(({ stories }, ref) => {
   const containerRef = useRef(null);
   const scrollAmount = 895;
-
+  // console.log(stories[0].multimedia[0].url, "testStoryImage");
   const scrollLeft = () => {
     if (containerRef.current) {
       containerRef.current.scrollBy({
@@ -68,7 +68,11 @@ const TopStories = forwardRef(({ stories }, ref) => {
                 <a href={story.url} target="_blank" rel="noopener noreferrer">
                   <img
                     className="h-96 rounded-md object-cover"
-                    src={story.multimedia[0].url}
+                    src={
+                      story.multimedia && story.multimedia[0]
+                        ? story.multimedia[0].url
+                        : "default-image-path.jpg"
+                    }
                     alt={story.title}
                   />
                 </a>
