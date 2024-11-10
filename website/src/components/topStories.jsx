@@ -91,7 +91,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
 
         {/* Scroll Progress Indicator */}
-        <div className="b-2 relative mx-auto h-2 w-[50%] overflow-hidden rounded-full bg-gray-300 p-2 shadow-inner">
+        <div className="b-2 relative mx-auto h-2 w-[75%] overflow-hidden rounded-full bg-gray-300 p-2 shadow-inner sm:w-[50%]">
           <div
             className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg transition-all duration-200"
             style={{ width: `${scrollProgress}%` }}

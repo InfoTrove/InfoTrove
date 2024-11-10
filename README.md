@@ -51,7 +51,6 @@ cd InfoTrove
 ```bash
 NYT_API_KEY_ARTICLES=your_article_api_key
 NYT_API_KEY_BOOKS=your_books_api_key
-NYT_API_KEY_TOP_STORIES=your_top_stories_api_key
 ```
 
 3. **Install dependencies**:
