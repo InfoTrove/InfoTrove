@@ -16,12 +16,12 @@ const ResPage = () => {
   switch (type) {
     case "articles":
       content = data?.response?.docs ? (
-        <div className="mt-[5rem]">
-          <ul className="flex flex-wrap gap-10 pb-[30px] pt-[30px] md:pl-[15vh]">
+        <div className=" mt-28">
+          <ul className="flex flex-wrap gap-7 mx-auto justify-center">
             {data.response.docs?.map((article, index) => (
               <li
                 key={index}
-                className="border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
+                className="grid grid-rows-subgrid row-span-3 p-10 mb-10 max-w-[420px] bg-white text-black transition-all duration-300 hover:scale-[1.05]"
                 style={{ width: "18rem" }}
               >
                 <a
@@ -45,7 +45,7 @@ const ResPage = () => {
                     <div className="text-lg font-bold">
                       {article.headline?.main}
                     </div>
-                    <div className="text-sm">{article?.abstract}</div>
+                    <p className="text-sm max-h-[120px] line-clamp-4">{article?.abstract}</p>
                   </div>
                 </a>
               </li>
@@ -60,38 +60,36 @@ const ResPage = () => {
 
     case "books":
       content = data?.results?.books ? (
-        <div className="mt-[5rem]">
-          <ul className="flex gap-10 pb-[30px] pt-[30px] sm:flex-wrap md:pl-[15vh]">
+        <section className="mt-28">
+          <ul className="flex flex-wrap gap-7 mx-auto justify-center">
             {data.results.books.map((book, index) => (
-              <a
+             
+                <li
+                  className="grid grid-rows-subgrid row-span-3 p-10 mb-10 max-w-[420px] bg-white text-black transition-all duration-300 hover:scale-[1.05]"
+                >
+                <a
                 key={index}
                 href={`/books/${book.primary_isbn10}`}
                 title="Buy book!"
               >
-                <li
-                  className="mx-auto max-w-fit border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
-                  style={{ width: "18rem" }}
-                >
                   <img
                     src={book.book_image ? book.book_image : fallBackImage}
                     alt={book.title}
-                    className="size-full"
-                    style={{ height: "auto", maxWidth: "100%" }}
                   />
-                  <div className="p-4">
-                    <div className="text-lg font-bold">{book.title}</div>
-                    <div className="text-sm">
+                  </a>
+                    <span className="text-lg font-bold">{book.title}</span>
+
+                    <span className="text-sm">
                       {book.description
                         ? book.description
                         : "No Description Available"}
-                    </div>
-                  </div>
+                  </span>
                 </li>
-              </a>
+             
             ))}
           </ul>
           <Footer />
-        </div>
+        </section>
       ) : (
         <div>No book data available.</div>
       );

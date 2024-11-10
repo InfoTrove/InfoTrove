@@ -47,7 +47,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
       <div className="hide-scrollbar relative mt-[5rem] flex items-center justify-center bg-neutral-700">
         <button
           data-name="leftButton"
-          className="absolute left-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
+          className="absolute left-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600 z-10 bg-neutral-700"
           onClick={scrollLeft}
         >
           {"<---"}
@@ -87,7 +87,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute right-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
+          className="absolute right-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600 bg-neutral-700"
           onClick={scrollRight}
         >
           {"--->"}

@@ -9,6 +9,7 @@ const Home = () => {
   const topStoriesRef = useRef(null);
   const navbarRef = useRef(null);
   const [data, setData] = useState([]);
+
   const scrollToTopStories = () => {
     const yOffset = -100; // adjust
     const element = topStoriesRef.current;
@@ -18,6 +19,7 @@ const Home = () => {
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
+
   useEffect(() => {
     const doFetch = async () => {
       const [data, error] = await handleFetch(
@@ -29,9 +31,10 @@ const Home = () => {
     };
     doFetch();
   }, []);
+
   return (
     <>
-      <div className=" bg-white ">
+      <div className="bg-white ">
         <NavBar ref={navbarRef} scrollToTop={scrollToTopStories} />
         <TopStories stories={data} ref={topStoriesRef} />
         <Author />

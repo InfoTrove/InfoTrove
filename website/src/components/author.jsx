@@ -25,15 +25,15 @@ const Author = () => {
     : null;
   return (
     <>
-      <div className=" bg-neutral-900 flex flex-col items-center p-5 text-white md:flex-row md:items-center md:p-[200px]">
-        <div className="w-80 h-80 border border-white rounded-full my-3 overflow-hidden md:w-[400px] md:h-[400px]">
+      <div className=" bg-neutral-900 flex flex-wrap justify-center p-5 text-white gap-20 md:h-[100vh] items-center">
+       
           <img
             src={randomBook?.book_image}
             alt="Book cover"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover max-w-[300px] max-h-[500px]"
           />
-        </div>
-        <ul className="list-none p-0 text-center md:text-left md:absolute md:left-[50%] md:transform md:-translate-x-1/2 lg:left-3/4">
+        
+        <ul className="text-center max-w-[400px]">
           <li className="border-b border-white pb-2 text-xl">
             Title: {randomBook?.title}
           </li>
