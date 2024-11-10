@@ -1,27 +1,30 @@
-import { useEffect } from "react";
+import { gql, useQuery } from "@apollo/client";
 import BooksContext from "./booksContext";
-import { useState } from "react";
-import handleFetch from "../utils/handleFetch";
+import React, { useState, useEffect } from "react";
+
+const GET_BOOKS = gql`
+  query GetBooks($listName: String!) {
+    getBooks(query: $listName) {
+      title
+      primary_isbn10
+      book_image
+      description
+      buy_links {
+        name
+        url
+      }
+    }
+  }
+`;
 
 const BooksProvider = ({ children }) => {
-  const [books, setBooks] = useState([]);
-  const [error, setError] = useState();
+  const { data, loading, error } = useQuery(GET_BOOKS, {
+    variables: { listName: "hardcover-fiction" },
+  });
 
-  useEffect(() => {
-    const doFetch = async () => {
-      console.log("fetching");
-      const [data, error] = await handleFetch(
-        //create a new api and delete this api key and hide it using config.js
-        `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=S40TyD7zGe3HkXJZD4MiENxkBybALIxp`,
-        { cache: "force-cache" }
-      );
-      if (data) setBooks(data.results.books);
-      if (error) setError(error);
-    };
-    doFetch();
-  }, []);
+  const books = data?.getBooks || [];
 
-  const contextValue = { books };
+  const contextValue = { books, loading, error };
 
   return (
     <BooksContext.Provider value={contextValue}>

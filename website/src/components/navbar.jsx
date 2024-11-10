@@ -6,17 +6,45 @@ import downArrow from "../assets/downArrow.png";
 import { forwardRef } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-
+import { gql, useApolloClient } from "@apollo/client";
 const NavBar = forwardRef(({ scrollToTop }, ref) => {
   const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
+  const client = useApolloClient();
   const navigate = useNavigate();
   const [showArticlesDropdown, setShowArticlesDropdown] = useState(false);
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
+  // GraphQL Queries
+  const GET_ARTICLES_BY_SECTION = gql`
+    query GetArticlesBySection($section: String!) {
+      getArticleBySection(section: $section) {
+        headline {
+          main
+        }
+        abstract
+        web_url
+        multimedia {
+          url
+        }
+      }
+    }
+  `;
+
+  const GET_BOOKS_BY_CATEGORY = gql`
+    query GetBooksByCategory($category: String!) {
+      getBookByCategory(category: $category) {
+        title
+        primary_isbn10
+        book_image
+        description
+      }
+    }
+  `;
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health", "Travel"],
+    articles: ["Technology", "Sports", "Science", "Health", "Travel", "World"],
     books: [
       "Hardcover Fiction",
+      "Manga",
       "Hardcover Nonfiction",
       "Sports",
       "Science",
@@ -27,26 +55,31 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
   };
 
   const performFetchAndNavigate = async (selectedOption, searchQuery) => {
-    const urlMap = {
-      articles: `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${searchQuery}")&api-key=${apiKey}`,
-      books: `https://api.nytimes.com/svc/books/v3/lists/current/${searchQuery
-        .replace(/\s+/g, "-")
-        .toLowerCase()}.json?api-key=${apiKey}`,
-    };
+    try {
+      let data;
+      if (selectedOption === "articles") {
+        const result = await client.query({
+          query: GET_ARTICLES_BY_SECTION,
+          variables: { section: searchQuery },
+        });
+        data = result.data.getArticleBySection;
+        console.log("🚀 ~ performFetchAndNavigate ~ data:", data);
+      } else if (selectedOption === "books") {
+        const result = await client.query({
+          query: GET_BOOKS_BY_CATEGORY,
+          variables: { category: searchQuery },
+        });
+        data = result.data.getBookByCategory;
+        console.log("🚀 ~ performFetchAndNavigate ~ data:", data);
+      }
 
-    const url = urlMap[selectedOption];
-    if (!url) return;
-
-    const [data, error] = await handleFetch(url);
-    if (error) {
-      console.error("Error fetching data: ", error);
-      return;
-    }
-
-    if (data && (data.response?.docs?.length > 0 || data.results)) {
-      navigate("/results", { state: { data, type: selectedOption } });
-    } else {
-      console.log("No data found for the given query.");
+      if (data && data.length > 0) {
+        navigate("/results", { state: { data, type: selectedOption } });
+      } else {
+        console.log("No data found for the given query.");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -72,13 +105,14 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
         gap: 2em;
         z-index: 1;
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s; /* Add visibility to the transition */
+        border-radius: 0.375rem; /* Equivalent to sm-rounded in Tailwind */
       }
       
       .dropdown-menu.show {
         visibility: visible; /* Make visible */
         opacity: 1;
         transform: translateY(0) scale(1); /* Move to final position and scale to full size */
-  transition-delay: 0s; /* Apply transition delay to 0s when showing */
+        transition-delay: 0s; /* Apply transition delay to 0s when showing */
       }
         .dropdown-item {
           background-color: transparent;
@@ -101,14 +135,14 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
         ref={ref}
         className="navbar-fixed flex bg-black text-white opacity-85"
       >
-          <img
-            src={logo}
-            alt="InfoTrove Logo"
-            className="size-20 cursor-pointer"
-            onClick={scrollToTop}
-          />
-      
-        <ul className="mx-auto flex gap-2 items-center justify-between">
+        <img
+          src={logo}
+          alt="InfoTrove Logo"
+          className="size-20 cursor-pointer"
+          onClick={scrollToTop}
+        />
+
+        <ul className=" ml-[15%] flex items-center justify-between gap-2 sm:ml-[39.5%]">
           <li>
             <Link to="/">Home</Link>
           </li>

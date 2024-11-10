@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ArticlesContext from "../context/booksContext";
-import { useState } from "react";
 
 export function useIsVisible(ref) {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -20,35 +19,55 @@ export function useIsVisible(ref) {
 const Author = () => {
   const context = useContext(ArticlesContext);
   const booksArr = context.books;
-  const randomBook = booksArr
-    ? booksArr[Math.floor(Math.random() * booksArr.length)]
-    : null;
+  const [loading, setLoading] = useState(true);
+  const [randomBook, setRandomBook] = useState(null);
+
+  useEffect(() => {
+    if (booksArr && booksArr.length > 0) {
+      setRandomBook(booksArr[Math.floor(Math.random() * booksArr.length)]);
+      setLoading(false);
+    }
+  }, [booksArr]);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center bg-neutral-900 text-white transition-all duration-500 ease-in-out">
+        <h1 className="mb-4 animate-pulse text-3xl font-semibold text-gray-300">
+          Loading Author Details...
+        </h1>
+        <div className="h-16 w-16 animate-spin rounded-full border-t-4 border-solid border-blue-500"></div>
+      </div>
+    );
+  }
+  console.log(randomBook);
+
   return (
-    <>
-      <div className=" bg-neutral-900 flex flex-wrap justify-center p-5 text-white gap-20 md:h-[100vh] items-center">
-       
-          <img
-            src={randomBook?.book_image}
-            alt="Book cover"
-            className="w-full h-full object-cover max-w-[300px] max-h-[500px]"
-          />
-        
-        <ul className="text-center max-w-[400px]">
+    <div className="flex h-screen flex-col items-center justify-center bg-neutral-900 text-white">
+      <h1 className="mb-8 text-4xl font-bold text-white">Book Of The Day!</h1>
+      <div className="flex flex-col items-center gap-10 p-5 md:flex-row">
+        <img
+          src={randomBook?.book_image}
+          alt="Book cover"
+          className="h-full max-h-[500px] w-full max-w-[300px] object-cover"
+        />
+
+        <ul className="max-w-[400px] text-center">
           <li className="border-b border-white pb-2 text-xl">
-            Title: {randomBook?.title}
+            Title: {randomBook?.title ? randomBook?.title : "Unavailable"}
           </li>
-          <li className="border-b border-white pb-2 text-xl">
-            Author: {randomBook?.author}
+          <li className="border-b border-white p-2 text-xl">
+            Author: {randomBook?.author ? randomBook?.author : "Unavailable"}
           </li>
-          <li className="border-b border-white pb-2 text-xl">
-            Description: {randomBook?.description}
+          <li className="border-b border-white p-2 text-xl">
+            Description:{" "}
+            {randomBook?.description ? randomBook?.description : "N/A"}
           </li>
-          <li className="border-b border-white pb-2 text-3xl">
-            Publisher: {randomBook?.publisher}
+          <li className="border-b border-white p-2 pb-0 text-3xl">
+            Publisher: {randomBook?.publisher ? randomBook?.publisher : "N/A"}
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

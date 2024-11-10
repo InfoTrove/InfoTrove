@@ -1,27 +1,38 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navbar";
-import ArticlesContext from "../../context/articlesContext";
-import { useContext } from "react";
-import { Card } from "react-bootstrap";
 import Footer from "../../components/footer";
+import { useEffect, useState } from "react";
 
 const ResPage = () => {
   const location = useLocation();
-  const { data, type } = location.state || {};
-  const { articles } = useContext(ArticlesContext);
-  const fallBackImage = "https://demofree.sirv.com/nope-not-here.jpg?w=150";
-  console.log(data);
-  let content;
+  const [data, setData] = useState(location.state?.data || null);
+  const [type, setType] = useState(location.state?.type || null);
+  const [loading, setLoading] = useState(!location.state);
 
+  useEffect(() => {
+    if (location.state) {
+      setData(location.state.data);
+      setType(location.state.type);
+      setLoading(false); // Stop loading when data is available
+    }
+  }, [location.state]);
+
+  const fallBackImage = "https://demofree.sirv.com/nope-not-here.jpg?w=150";
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading indicator
+  }
+
+  let content;
   switch (type) {
     case "articles":
-      content = data?.response?.docs ? (
-        <div className=" mt-28">
-          <ul className="flex flex-wrap gap-7 mx-auto justify-center">
-            {data.response.docs?.map((article, index) => (
+      content = data?.length ? (
+        <div className="mt-28">
+          <ul className="mx-auto flex flex-wrap justify-center gap-7">
+            {data.map((article, index) => (
               <li
                 key={index}
-                className="grid grid-rows-subgrid row-span-3 p-10 mb-10 max-w-[420px] bg-white text-black transition-all duration-300 hover:scale-[1.05]"
+                className=" row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid rounded-sm bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]"
                 style={{ width: "18rem" }}
               >
                 <a
@@ -45,7 +56,9 @@ const ResPage = () => {
                     <div className="text-lg font-bold">
                       {article.headline?.main}
                     </div>
-                    <p className="text-sm max-h-[120px] line-clamp-4">{article?.abstract}</p>
+                    <p className="line-clamp-4 max-h-[120px] text-sm">
+                      {article?.abstract}
+                    </p>
                   </div>
                 </a>
               </li>
@@ -59,34 +72,29 @@ const ResPage = () => {
       break;
 
     case "books":
-      content = data?.results?.books ? (
+      content = data?.length ? (
         <section className="mt-28">
-          <ul className="flex flex-wrap gap-7 mx-auto justify-center">
-            {data.results.books.map((book, index) => (
-             
-                <li
-                  className="grid grid-rows-subgrid row-span-3 p-10 mb-10 max-w-[420px] bg-white text-black transition-all duration-300 hover:scale-[1.05]"
-                >
-                <a
+          <ul className="mx-auto flex flex-wrap justify-center gap-7">
+            {data.map((book, index) => (
+              <li
                 key={index}
-                href={`/books/${book.primary_isbn10}`}
-                title="Buy book!"
+                className="row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid rounded-sm bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]"
               >
+                <a href={`/books/${book.primary_isbn10}`} title="Buy book!">
                   <img
                     src={book.book_image ? book.book_image : fallBackImage}
                     alt={book.title}
                     className=" size-auto"
                   />
-                  </a>
-                    <span className="text-lg font-bold">{book.title}</span>
+                </a>
+                <span className="text-lg font-bold">{book.title}</span>
 
-                    <span className="text-sm">
-                      {book.description
-                        ? book.description
-                        : "No Description Available"}
-                  </span>
-                </li>
-             
+                <span className="text-sm">
+                  {book.description
+                    ? book.description
+                    : "No Description Available"}
+                </span>
+              </li>
             ))}
           </ul>
           <Footer />
