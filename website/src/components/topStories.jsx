@@ -4,7 +4,6 @@
 // The containerRef contains the mutable reference to the DOM element => scrollable container
 // reference allows for manipulating its methods
 // current in ref is current rendered Element
-import { Link } from "react-router-dom";
 import React, { forwardRef, useEffect } from "react";
 import { useRef } from "react";
 const TopStories = forwardRef(({ stories }, ref) => {
@@ -47,7 +46,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
       <div className="hide-scrollbar relative mt-[5rem] flex items-center justify-center bg-neutral-700">
         <button
           data-name="leftButton"
-          className="absolute transform -translate-y-1/2 left-5 top-1/2 hover:bg-neutral-600"
+          className="absolute z-10 transform -translate-y-1/2 left-5 top-1/2 bg-neutral-700 hover:bg-neutral-600"
           onClick={scrollLeft}
         >
           {"<---"}
@@ -87,7 +86,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute transform -translate-y-1/2 right-5 top-1/2 hover:bg-neutral-600"
+          className="absolute transform -translate-y-1/2 right-5 top-1/2 bg-neutral-700 hover:bg-neutral-600"
           onClick={scrollRight}
         >
           {"--->"}

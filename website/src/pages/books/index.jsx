@@ -10,18 +10,16 @@ const Books = () => {
   return (
     <div>
       <NavBar />
-      <ul className="mt-[5rem] flex gap-10 pb-[30px] pt-[30px] sm:flex-wrap md:pl-[15vh]">
+      <ul className="">
         {books?.map((book) => (
           <Link to={`/books/${book.primary_isbn10}`}>
             <li
               key={book.primary_isbn10}
-              className="mx-auto max-w-fit border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
+              className=" bg-white text-black transition-all duration-300 hover:scale-[1.05]"
               style={{ width: "18rem" }}
             >
               <img
                 src={book.book_image}
-                className="size-full"
-                style={{ height: "auto", maxWidth: "100%" }}
               />
               <div className="">
                 <h3 className="text-lg font-bold">{book.Title}</h3>
@@ -31,7 +29,6 @@ const Books = () => {
           </Link>
         ))}
       </ul>
-      <Footer />
     </div>
   );
 };
