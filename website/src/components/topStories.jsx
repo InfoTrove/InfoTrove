@@ -65,7 +65,12 @@ const TopStories = forwardRef(({ stories }, ref) => {
                 <div className="title-container absolute bottom-0 left-0 rounded-sm bg-black bg-opacity-50 p-4 text-white">
                   {story.title}
                 </div>
-                <a href={story.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={story.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Read Story!"
+                >
                   <img
                     className="h-96 rounded-md object-cover"
                     src={

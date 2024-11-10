@@ -13,8 +13,8 @@ const BookDetail = () => {
     return (
       <div className="">
         <NavBar />
-        <div className="text-center p-5 pt-20">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+        <div className="p-5 pt-20 text-center">
+          <h1 className="mb-4 text-3xl font-semibold text-gray-800">
             Book Not Found
           </h1>
           <p className="text-gray-600">
@@ -22,7 +22,7 @@ const BookDetail = () => {
           </p>
           <button
             onClick={() => navigate(-1)}
-            className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded transition duration-150 ease-in-out"
+            className="mt-6 rounded bg-blue-500 px-6 py-2 font-bold text-white transition duration-150 ease-in-out hover:bg-blue-600"
           >
             Go Back
           </button>
@@ -35,19 +35,19 @@ const BookDetail = () => {
     <div className="">
       <NavBar />
       <div className="container mx-auto px-4 py-28">
-        <div className="flex gap-8 items-start">
+        <div className="flex items-start gap-8">
           <img
             src={book.book_image}
             alt={book.title}
-            className="shadow-lg rounded-lg max-w-xs"
+            className="max-w-xs rounded-lg shadow-lg"
           />
           <div className="flex-1">
-            <h1 className="text-4xl font-bold text-white mb-6">{book.title}</h1>
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <h1 className="mb-6 text-4xl font-bold text-white">{book.title}</h1>
+            <h3 className="mb-2 text-xl font-semibold text-white">
               Description
             </h3>
-            <p className="text-white mb-8">{book.description}</p>
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <p className="mb-8 text-white">{book.description}</p>
+            <h3 className="mb-2 text-xl font-semibold text-white">
               Buy Links:
             </h3>
             <ul>
@@ -55,7 +55,7 @@ const BookDetail = () => {
                 <li key={index} className="mb-4">
                   <a
                     href={link.url}
-                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded transition duration-150 ease-in-out"
+                    className="inline-flex items-center justify-center rounded bg-blue-500 px-6 py-3 font-bold text-white transition duration-150 ease-in-out hover:bg-blue-600"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

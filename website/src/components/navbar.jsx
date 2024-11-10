@@ -5,16 +5,16 @@ import handleFetch from "../utils/handleFetch"; // Ensure this is the correct pa
 import downArrow from "../assets/downArrow.png";
 import { forwardRef } from "react";
 import { Dropdown } from "react-bootstrap";
-import { motion } from 'framer-motion' 
+import { motion } from "framer-motion";
 
-const NavBar = forwardRef(({scrollToTop}, ref) => {
+const NavBar = forwardRef(({ scrollToTop }, ref) => {
   const apiKey = `S40TyD7zGe3HkXJZD4MiENxkBybALIxp`;
   const navigate = useNavigate();
   const [showArticlesDropdown, setShowArticlesDropdown] = useState(false);
   const [showBooksDropdown, setShowBooksDropdown] = useState(false);
 
   const categoryOptions = {
-    articles: ["Science", "Technology", "Health", "Travel"],  
+    articles: ["Science", "Technology", "Health", "Travel"],
     books: [
       "Hardcover Fiction",
       "Hardcover Nonfiction",
@@ -109,7 +109,7 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
             onClick={scrollToTop}
           />
         </div>
-        <ul className="flex gap-9 mx-auto max-w-fit items-center">
+        <ul className="mx-auto flex max-w-fit items-center gap-9">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -117,7 +117,9 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
             onMouseEnter={() => setShowArticlesDropdown(true)}
             onMouseLeave={() => setShowArticlesDropdown(false)}
           >
-            <Link to="/articles">Articles</Link>{" "}
+            <p to="/articles" className="cursor-pointer">
+              Articles
+            </p>{" "}
             {/* Updated path for Articles */}
             {showArticlesDropdown && (
               <motion.div
@@ -144,7 +146,10 @@ const NavBar = forwardRef(({scrollToTop}, ref) => {
             onMouseEnter={() => setShowBooksDropdown(true)}
             onMouseLeave={() => setShowBooksDropdown(false)}
           >
-            <Link to="/books">Book</Link> {/* Updated path for Books */}
+            <p to="/books" className="cursor-pointer ">
+              Books
+            </p>{" "}
+            {/* Updated path for Books */}
             {showBooksDropdown && (
               <motion.div
                 initial={{ opacity: 0, y: 3 }}
