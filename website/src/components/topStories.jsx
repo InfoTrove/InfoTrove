@@ -25,7 +25,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
       containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
-
+  //
   return (
     <div ref={ref}>
       <style>
