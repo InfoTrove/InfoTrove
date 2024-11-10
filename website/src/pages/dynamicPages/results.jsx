@@ -17,14 +17,19 @@ const ResPage = () => {
     case "articles":
       content = data?.response?.docs ? (
         <div className="mt-[5rem]">
-          <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
+          <ul className="flex flex-wrap gap-10 pb-[30px] pt-[30px] md:pl-[15vh]">
             {data.response.docs?.map((article, index) => (
               <li
                 key={index}
-                className="border bg-white text-black hover:scale-[1.05] transition-all duration-300"
+                className="border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
                 style={{ width: "18rem" }}
               >
-                <Link to={article.web_url}>
+                <a
+                  href={article.web_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Read article!"
+                >
                   <img
                     src={
                       article.multimedia?.[0]?.url
@@ -35,13 +40,14 @@ const ResPage = () => {
                     className="size-28 w-full"
                     style={{ height: "auto", maxWidth: "100%" }}
                   />
-                </Link>
-                <div className="p-4">
-                  <div className="font-bold text-lg">
-                    {article.headline?.main}
+
+                  <div className="p-4">
+                    <div className="text-lg font-bold">
+                      {article.headline?.main}
+                    </div>
+                    <div className="text-sm">{article?.abstract}</div>
                   </div>
-                  <div className="text-sm">{article?.abstract}</div>
-                </div>
+                </a>
               </li>
             ))}
           </ul>
@@ -55,11 +61,15 @@ const ResPage = () => {
     case "books":
       content = data?.results?.books ? (
         <div className="mt-[5rem]">
-          <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh]">
+          <ul className="flex gap-10 pb-[30px] pt-[30px] sm:flex-wrap md:pl-[15vh]">
             {data.results.books.map((book, index) => (
-              <Link key={index} to={`/books/${book.primary_isbn10}`}>
+              <a
+                key={index}
+                href={`/books/${book.primary_isbn10}`}
+                title="Buy book!"
+              >
                 <li
-                  className="border bg-white text-black hover:scale-[1.05] transition-all duration-300 max-w-fit mx-auto"
+                  className="mx-auto max-w-fit border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
                   style={{ width: "18rem" }}
                 >
                   <img
@@ -69,7 +79,7 @@ const ResPage = () => {
                     style={{ height: "auto", maxWidth: "100%" }}
                   />
                   <div className="p-4">
-                    <div className="font-bold text-lg">{book.title}</div>
+                    <div className="text-lg font-bold">{book.title}</div>
                     <div className="text-sm">
                       {book.description
                         ? book.description
@@ -77,7 +87,7 @@ const ResPage = () => {
                     </div>
                   </div>
                 </li>
-              </Link>
+              </a>
             ))}
           </ul>
           <Footer />

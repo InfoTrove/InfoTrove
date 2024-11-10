@@ -14,11 +14,12 @@ const Books = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex sm:flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh] mt-[5rem]">
+      <ul className="mt-[5rem] flex gap-10 pb-[30px] pt-[30px] sm:flex-wrap md:pl-[15vh]">
         {books?.map((book) => (
           <Link to={`/books/${book.primary_isbn10}`}>
             <li
-              className="border bg-white text-black hover:scale-[1.05] transition-all duration-300 max-w-fit mx-auto"
+              key={book.primary_isbn10}
+              className="mx-auto max-w-fit border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
               style={{ width: "18rem" }}
             >
               <img
@@ -27,7 +28,7 @@ const Books = () => {
                 style={{ height: "auto", maxWidth: "100%" }}
               />
               <div className="">
-                <h3 className="font-bold text-lg">{book.Title}</h3>
+                <h3 className="text-lg font-bold">{book.Title}</h3>
                 <p>{book.description}</p>
               </div>
             </li>
