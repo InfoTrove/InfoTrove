@@ -1,91 +1,127 @@
 # InfoTrove
 
-Created by Mohamed Sy, Ahmad Hamza.
+InfoTrove is an interactive web application designed to provide users with easy access to articles, books, and top stories. This application leverages a GraphQL API to fetch data from The New York Times and utilizes Apollo Client for efficient data management and caching. Users can explore various topics, view top stories, and access in-depth information about books and articles through a visually engaging and responsive interface.
 
-## 🚀 Mission statement
+## Deployed URL
 
-Our application InfoTrove is for people who seek daily reads. with a wide variety of choices It allows users to have daily reads from articles, movies ect...
+You can access the live version of InfoTrove at the following URL:
 
-## API
+[InfoTrove Live](https://info-trove.vercel.app/)
 
-This application will use the New York Time's API. Below are the documentation and specific endpoints we intend to use.
+Enjoy exploring the latest articles, books, and top stories!
 
-Link to API documentation: [Link goes here]
-- Books  #1
-  - Cover, Title, Purchase Links, Authors
-- Articles #2
-  - Cover, Title, Authors, Publish Date, Category, Key Words
-- Top stories #3
-  - Top Stories Based On Category
-- Movies #4
-  - Cover, Title, Category
+## Table of Contents
 
-[API requires key]
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components Overview](#components-overview)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
 
-## 👩‍💻 MVP User Stories
+## Features
 
-The core features of the application include:
+- **Explore Articles and Books**: Search and browse articles by section and books by category, all fetched dynamically from the NYT's API using GraphQL.
+- **Top Stories Section**: View the latest top stories with smooth horizontal scrolling and visual indicators.
+- **Detailed Book Views**: Access comprehensive details about books, including descriptions and links for purchase.
+- **Responsive Design**: Optimized for desktop and mobile, with dropdown menus and animated transitions.
+- **Real-Time Loading Indicators**: Custom loading animations provide feedback during data fetching.
+- **Scroll Progress Indicators**: Visual progress bars guide users as they scroll through stories and book details.
 
-- Users can open an article and read about it
-- Users can open movie reviews
-- Users can filter out specific articles by searching for keywords
-- Users can cycle through pages
+## Tech Stack
 
-## 🤔 Stretch User Stories
+- **Frontend**: React, Tailwind CSS, Framer Motion for animations
+- **Backend**: Apollo Server, Node.js, GraphQL
+- **State Management**: Apollo Client (with caching)
+- **Routing**: React Router
+- **Deployment**: Vercel
 
-If time permits, the following stretch features will be implemented in order of priority:
+## Installation
 
-- Users will be able to save articles
-- Users will be able to toggle dark mode
+1. **Clone the repository**:
 
-## 📆 Timeline for reaching MVP in 1 week
+```bash
+git clone https://github.com/your-username/InfoTrove.git
+cd InfoTrove
+```
 
-To ensure that we can complete all core features of the application in 1 week, we will aim to complete tasks according to the following timeline:
+2. **Create local.env file in the root and set up environment variables**:
 
-**Day 1**
+```bash
+NYT_API_KEY_ARTICLES=your_article_api_key
+NYT_API_KEY_BOOKS=your_books_api_key
+NYT_API_KEY_TOP_STORIES=your_top_stories_api_key
+```
 
-- [ ] Setting up GitHub organization
-- [ ] Setting up project folders
-- [ ] Creating a navigation bar
-- [ ] Creating WireFrame
+3. **Install dependencies**:
 
-**Day 2**
+```bash
+npm install
+```
 
-- [ ] Started creating the home component 
-- [ ] Started creating & styling Top Stories Section
-- [ ] Started Navigation Bar 
+4. **Start development server**:
 
-**Day 3**
+```bash
+npm run dev
+```
 
-- [ ]  Added click listeners to Top stories
-- [ ]  Created a random Author section within home
-- [ ]  Create toggle option Searchbar within Home 
+## Usage
 
+- **Navigation**:
+  - **Home**: View the latest top stories in a horizontally scrollable section, with real-time progress indicators.
+  - **Articles**: Hover over the "Articles" dropdown to select sections like Science, Technology, Health, and Travel.
+  - **Books**: Hover over the "Books" dropdown to explore categories such as Fiction, Nonfiction, Sports, and more.
+  - **Details**: Click on a book or article to view detailed information, including a description and links to buy or read.
 
-**Day 4**
+## Screenshots
 
-- [ ]  Created the footer section 
-- [ ]  Created Dynamic Path based on the selected category within articles or books 
-- [ ]  Ticket description and due date
-- [ ]  Styled the main articles and books pages 
+![Top Stories](./website/public/TopStoriess.png)
 
+![Book Of The Day](./website/public/Book%20of%20the%20day.png)
 
-**Day 5**
+![Books](./website/public/Books.png.png)
 
-- [ ]  Finished Up On Styling 
-- [ ]  Switch the search bar to a hover over the category 
+![Book](./website/public/Book.png)
 
+## Components Overview
 
-## Wireframes of each page in your application
+1. **NavBar**:
 
-Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
+- The main navigation component.
+- Dropdown menus for Articles and Books sections, fetching data via GraphQL on selection.
 
-[Home Page]
-![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/f591361a-ec97-4780-a060-66043dbad480)
+2. **TopStories**:
 
+- Displays top stories in a scrollable horizontal layout.
+- Includes a custom scroll indicator to track user position.
+- Gradient indicators on edges guide users to scroll for more content.
 
-[Articles Page]
-![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/8c118b72-6228-48b6-9e75-e6e0184deda9)
+3. **BookDetail**:
 
-[Individual Book Page]
-![image](https://github.com/InfoTrove/InfoTrove/assets/146132911/796a97cd-979e-4bc3-bd7a-235b13c4aaf1)
+- Shows detailed information about a selected book, including title, description, author, and buy links.
+- Fetches data from Apollo Client’s cache or requests it if unavailable.
+- Incorporates responsive design for optimal viewing on mobile devices.
+
+4. **Footer**:
+
+- Provides links back to the top and information about the application.
+
+## Future Enhancements
+
+- **User Authentication**: Allow users to create accounts, save favorite articles, and receive personalized recommendations.
+- **Enhanced Filtering**: Add more filtering options for articles and books, such as by date or author.
+- **User Comments and Reviews**: Enable users to leave reviews on books and articles.
+- **Improved Mobile Experience**: Further refine mobile responsiveness, especially for scrollable sections.
+
+## Contributing
+
+We welcome contributions! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add your feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+Feel free to reach out for questions or feedback. Thank You!

@@ -1,21 +1,38 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
+import { useEffect, useState } from "react";
 
 const ResPage = () => {
   const location = useLocation();
-  const { data, type } = location.state || {};
+  const [data, setData] = useState(location.state?.data || null);
+  const [type, setType] = useState(location.state?.type || null);
+  const [loading, setLoading] = useState(!location.state);
+
+  useEffect(() => {
+    if (location.state) {
+      setData(location.state.data);
+      setType(location.state.type);
+      setLoading(false); // Stop loading when data is available
+    }
+  }, [location.state]);
+
   const fallBackImage = "https://demofree.sirv.com/nope-not-here.jpg?w=150";
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading indicator
+  }
+
   let content;
   switch (type) {
     case "articles":
-      content = data?.response?.docs ? (
-        <div className=" mt-28">
+      content = data?.length ? (
+        <div className="mt-28">
           <ul className="mx-auto flex flex-wrap justify-center gap-7">
-            {data.response.docs?.map((article, index) => (
+            {data.map((article, index) => (
               <li
                 key={index}
-                className="row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]"
+                className=" row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid rounded-sm bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]"
                 style={{ width: "18rem" }}
               >
                 <a
@@ -55,19 +72,19 @@ const ResPage = () => {
       break;
 
     case "books":
-      content = data?.results?.books ? (
+      content = data?.length ? (
         <section className="mt-28">
           <ul className="mx-auto flex flex-wrap justify-center gap-7">
-            {data.results.books.map((book, index) => (
-              <li className="row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]">
-                <a
-                  key={index}
-                  href={`/books/${book.primary_isbn10}`}
-                  title="Buy book!"
-                >
+            {data.map((book, index) => (
+              <li
+                key={index}
+                className="row-span-3 mb-10 grid max-w-[420px] grid-rows-subgrid rounded-sm bg-white p-10 text-black transition-all duration-300 hover:scale-[1.05]"
+              >
+                <a href={`/books/${book.primary_isbn10}`} title="Buy book!">
                   <img
                     src={book.book_image ? book.book_image : fallBackImage}
                     alt={book.title}
+                    className=" size-auto"
                   />
                 </a>
                 <span className="text-lg font-bold">{book.title}</span>

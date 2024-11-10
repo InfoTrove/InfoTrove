@@ -19,14 +19,13 @@ export function useIsVisible(ref) {
 const Author = () => {
   const context = useContext(ArticlesContext);
   const booksArr = context.books;
-  const [loading, setLoading] = useState(true); // Initialize loading state
+  const [loading, setLoading] = useState(true);
   const [randomBook, setRandomBook] = useState(null);
 
   useEffect(() => {
     if (booksArr && booksArr.length > 0) {
-      // Set a random book once booksArr is available
       setRandomBook(booksArr[Math.floor(Math.random() * booksArr.length)]);
-      setLoading(false); // Stop loading once randomBook is set
+      setLoading(false);
     }
   }, [booksArr]);
 
@@ -40,40 +39,34 @@ const Author = () => {
       </div>
     );
   }
+  console.log(randomBook);
 
   return (
-    <div className="flex h-screen items-center justify-center bg-neutral-900 text-white">
-      {loading ? (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="mb-4 animate-pulse text-3xl font-semibold text-gray-300">
-            Loading Author Details...
-          </h1>
-          <div className="h-16 w-16 animate-spin rounded-full border-t-4 border-solid border-blue-500"></div>
-        </div>
-      ) : (
-        <div className="flex flex-wrap items-center justify-center gap-20 p-5 md:h-[100vh]">
-          <img
-            src={randomBook?.book_image}
-            alt="Book cover"
-            className="h-full max-h-[500px] w-full max-w-[300px] object-cover"
-          />
+    <div className="flex h-screen flex-col items-center justify-center bg-neutral-900 text-white">
+      <h1 className="mb-8 text-4xl font-bold text-white">Book Of The Day!</h1>
+      <div className="flex flex-col items-center gap-10 p-5 md:flex-row">
+        <img
+          src={randomBook?.book_image}
+          alt="Book cover"
+          className="h-full max-h-[500px] w-full max-w-[300px] object-cover"
+        />
 
-          <ul className="max-w-[400px] text-center">
-            <li className="border-b border-white pb-2 text-xl">
-              Title: {randomBook?.title}
-            </li>
-            <li className="border-b border-white pb-2 text-xl">
-              Author: {randomBook?.author}
-            </li>
-            <li className="border-b border-white pb-2 text-xl">
-              Description: {randomBook?.description}
-            </li>
-            <li className="border-b border-white pb-2 text-3xl">
-              Publisher: {randomBook?.publisher}
-            </li>
-          </ul>
-        </div>
-      )}
+        <ul className="max-w-[400px] text-center">
+          <li className="border-b border-white pb-2 text-xl">
+            Title: {randomBook?.title ? randomBook?.title : "Unavailable"}
+          </li>
+          <li className="border-b border-white p-2 text-xl">
+            Author: {randomBook?.author ? randomBook?.author : "Unavailable"}
+          </li>
+          <li className="border-b border-white p-2 text-xl">
+            Description:{" "}
+            {randomBook?.description ? randomBook?.description : "N/A"}
+          </li>
+          <li className="border-b border-white p-2 pb-0 text-3xl">
+            Publisher: {randomBook?.publisher ? randomBook?.publisher : "N/A"}
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

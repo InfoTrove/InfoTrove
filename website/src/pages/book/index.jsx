@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import BooksContext from "../../context/booksContext";
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -20,9 +21,9 @@ const BookDetail = () => {
   }, [books, booksLoading, id]);
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white">
+    <div className="bg-neutral-850 text-white">
       <NavBar />
-      <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="mt-[7%] flex flex-col items-center justify-center py-10">
         {loading ? (
           <div className="flex flex-col items-center">
             <h1 className="animate-pulse text-3xl font-semibold text-gray-300">
@@ -46,8 +47,8 @@ const BookDetail = () => {
             </button>
           </div>
         ) : (
-          <div className="container mx-auto px-4 py-28">
-            <div className="flex flex-col items-start gap-8 md:flex-row">
+          <div className="mx-auto px-4 pb-10 ">
+            <div className="flex flex-col items-center gap-8 md:flex-row">
               <img
                 src={book.book_image}
                 alt={book.title}
@@ -56,7 +57,7 @@ const BookDetail = () => {
               <div className="flex-1">
                 <h1 className="mb-6 text-4xl font-bold">{book.title}</h1>
                 <h3 className="mb-2 text-xl font-semibold">Description</h3>
-                <p className="mb-8">{book.description}</p>
+                <p className="mb-6">{book.description}</p>
                 <h3 className="mb-2 text-xl font-semibold">Buy Links:</h3>
                 <ul>
                   {book.buy_links.map((link, index) => (
@@ -77,6 +78,7 @@ const BookDetail = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

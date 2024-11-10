@@ -33,9 +33,20 @@ const typeDefs = gql`
     description: String
     buy_links: [BuyLink]
   }
+
+  type Story {
+    title: String
+    abstract: String
+    url: String
+    multimedia: [Multimedia]
+  }
+
   type Query {
     getArticles(query: String!): [Article]
     getBooks(query: String!): [Book]
+    getArticleBySection(section: String!): [Article]
+    getBookByCategory(category: String!): [Book]
+    getTopStories(section: String!): [Story]
   }
 `;
 const resolvers = {
@@ -57,7 +68,6 @@ const resolvers = {
         `https://api.nytimes.com/svc/books/v3/lists/current/${query}.json?api-key=${process.env.NYT_API_KEY_BOOKS}`,
       );
       const data = await response.json();
-      console.log("NYT API response for books:", data);
       return data.results.books.map((book) => ({
         title: book.title,
         primary_isbn10: book.primary_isbn10,
@@ -69,9 +79,69 @@ const resolvers = {
         })),
       }));
     },
+    getArticleBySection: async (_, { section }) => {
+      const response = await fetch(
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${section}")&api-key=${process.env.NYT_API_KEY_ARTICLES}`,
+      );
+      const data = await response.json();
+
+      if (!data.response || !data.response.docs) {
+        throw new Error("No articles found for the specified section");
+      }
+
+      return data.response.docs.map((article) => ({
+        headline: { main: article.headline.main },
+        abstract: article.abstract,
+        web_url: article.web_url,
+        multimedia: article.multimedia.map((media) => ({
+          url: media.url,
+        })),
+      }));
+    },
+
+    getBookByCategory: async (_, { category }) => {
+      const formattedCategory = category.replace(/\s+/g, "-").toLowerCase();
+      const response = await fetch(
+        `https://api.nytimes.com/svc/books/v3/lists/current/${formattedCategory}.json?api-key=${process.env.NYT_API_KEY_BOOKS}`,
+      );
+      const data = await response.json();
+
+      if (!data.results || !data.results.books) {
+        throw new Error("No books found for the specified category");
+      }
+
+      return data.results.books.map((book) => ({
+        title: book.title,
+        primary_isbn10: book.primary_isbn10,
+        book_image: book.book_image,
+        description: book.description,
+      }));
+    },
+    getTopStories: async (_, { section }) => {
+      try {
+        const response = await fetch(
+          `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.NYT_API_KEY_BOOKS}`,
+        );
+        const data = await response.json();
+        console.log("🚀 ~ getTopStories: ~ data:", data);
+
+        if (!data.results) {
+          throw new Error("No top stories available for the specified section");
+        }
+
+        return data.results.map((story) => ({
+          title: story.title,
+          abstract: story.abstract,
+          url: story.url,
+          multimedia: story.multimedia,
+        }));
+      } catch (error) {
+        console.error("Error fetching top stories:", error);
+        throw new Error("Failed to fetch top stories");
+      }
+    },
   },
 };
-console.log("resolvers", resolvers);
 const server = new ApolloServer({ typeDefs, resolvers });
 
 const startServer = server.start();

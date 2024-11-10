@@ -24,7 +24,7 @@ const Footer = ({ scrollToTop }) => {
           src={logo}
           alt="info trove logo"
           onClick={scrollToTop}
-          className="max-w-[100px]"
+          className="max-w-[100px] cursor-pointer"
         />
 
         {profiles.map((item) => (

@@ -1,32 +1,29 @@
-// useRef created a Mutable Reference to a dom element . Making it intractable In React code
-// When an Element is scrollable it gains scroll properties
-// When scroll functions are invoked, they check the current scroll position
-// The containerRef contains the mutable reference to the DOM element => scrollable container
-// reference allows for manipulating its methods
-// current in ref is current rendered Element
-import React, { forwardRef, useEffect } from "react";
-import { useRef } from "react";
+import React, { forwardRef, useRef, useEffect, useState } from "react";
+
 const TopStories = forwardRef(({ stories }, ref) => {
   const containerRef = useRef(null);
-  const scrollAmount = 895;
-  // console.log(stories[0].multimedia[0].url, "testStoryImage");
-  const scrollLeft = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Default Scroll Position
+  useEffect(() => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth",
-      });
+      containerRef.current.scrollLeft = 900; // Adjust as needed
+    }
+  }, []);
+
+  // Update Scroll Progress
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (container) {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      const currentScroll = container.scrollLeft;
+      const scrollPercentage = (currentScroll / maxScrollLeft) * 100;
+      setScrollProgress(scrollPercentage);
     }
   };
 
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-  //
   return (
-    <div ref={ref}>
+    <div ref={ref} className="mt-16">
       <style>
         {`
           .hide-scrollbar::-webkit-scrollbar {
@@ -37,31 +34,39 @@ const TopStories = forwardRef(({ stories }, ref) => {
             scrollbar-width: none; /* Firefox */
           }
           .title-container {
-            max-width: 100%; 
+            max-width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
           }
         `}
       </style>
-      <div className="hide-scrollbar relative mt-[5rem] flex items-center justify-center bg-neutral-700">
-        <button
-          data-name="leftButton"
-          className="absolute z-10 transform -translate-y-1/2 left-5 top-1/2 bg-neutral-700 hover:bg-neutral-600"
-          onClick={scrollLeft}
-        >
-          {"<---"}
-        </button>
+
+      {/* Black Background Wrapper for Heading */}
+      <div className="bg-neutral-700 pt-7">
+        <h1 className="mt-4 text-center text-4xl font-bold text-white">
+          Top Stories!
+        </h1>
+      </div>
+
+      {/* Outer container for gradients and scrollable content */}
+      <div className="relative bg-neutral-700">
+        {/* Gradient overlays on the left and right sides */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-neutral-700"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-neutral-700"></div>
+
+        {/* Scrollable section with progress indicator */}
         <div
+          className="hide-scrollbar mx-auto flex max-w-[93%] overflow-x-auto whitespace-nowrap py-3 transition-all duration-300 "
           ref={containerRef}
-          className="hide-scrollbar relative mx-auto flex max-w-[93%] overflow-x-auto whitespace-nowrap py-3 transition-all duration-300 "
+          onScroll={handleScroll}
         >
-          <ul data-name="articleContainer" className="flex mx-auto">
+          <ul data-name="articleContainer" className="flex">
             {stories?.map((story, index) => (
               <li
-                className="relative m-8 inline-block w-96 bg-neutral-700  transition-all duration-300 hover:scale-[1.05]"
+                className="relative m-8 inline-block w-96 bg-neutral-700 transition-all duration-300 hover:scale-[1.05]"
                 key={index}
               >
-                <div className="absolute bottom-0 left-0 p-4 text-white bg-black bg-opacity-50 rounded-sm title-container">
+                <div className="title-container absolute bottom-0 left-0 rounded-sm bg-black bg-opacity-50 p-4 text-white">
                   {story.title}
                 </div>
                 <a
@@ -71,7 +76,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
                   title="Read Story!"
                 >
                   <img
-                    className="object-cover rounded-md h-96"
+                    className="h-96 w-full rounded-md object-cover"
                     src={
                       story.multimedia && story.multimedia[0]
                         ? story.multimedia[0].url
@@ -84,13 +89,15 @@ const TopStories = forwardRef(({ stories }, ref) => {
             ))}
           </ul>
         </div>
-        <button
-          data-name="rightButton"
-          className="absolute transform -translate-y-1/2 right-5 top-1/2 bg-neutral-700 hover:bg-neutral-600"
-          onClick={scrollRight}
-        >
-          {"--->"}
-        </button>
+
+        {/* Scroll Progress Indicator */}
+        <div className="b-2 relative mx-auto h-2 w-[50%] overflow-hidden rounded-full bg-gray-300 p-2 shadow-inner">
+          <div
+            className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg transition-all duration-200"
+            style={{ width: `${scrollProgress}%` }}
+          ></div>
+        </div>
+        <div className="p-3"> </div>
       </div>
     </div>
   );
