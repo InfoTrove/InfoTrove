@@ -66,10 +66,10 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
         transform: translateY(-10px) scale(0.95);
         position: absolute;
         background-color: #f9f9f9;
-        padding: 10px;
+        padding: 1em;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 10px;
+        gap: 2em;
         z-index: 1;
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s; /* Add visibility to the transition */
       }
@@ -85,7 +85,7 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
           border: none;
           color: black;
           text-align: left;
-          padding: 5px;
+          padding: 0.2em;
           text-decoration: none;
           display: block;
           width: 100%;
@@ -101,15 +101,14 @@ const NavBar = forwardRef(({ scrollToTop }, ref) => {
         ref={ref}
         className="navbar-fixed flex bg-black text-white opacity-85"
       >
-        <div>
           <img
             src={logo}
             alt="InfoTrove Logo"
             className="size-20 cursor-pointer"
             onClick={scrollToTop}
           />
-        </div>
-        <ul className="mx-auto flex max-w-fit items-center gap-9">
+      
+        <ul className="mx-auto flex gap-2 items-center justify-between">
           <li>
             <Link to="/">Home</Link>
           </li>

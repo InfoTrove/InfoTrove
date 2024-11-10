@@ -75,6 +75,7 @@ const ResPage = () => {
                   <img
                     src={book.book_image ? book.book_image : fallBackImage}
                     alt={book.title}
+                    className=" size-auto"
                   />
                   </a>
                     <span className="text-lg font-bold">{book.title}</span>
