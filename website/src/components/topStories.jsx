@@ -47,7 +47,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
       <div className="hide-scrollbar relative mt-[5rem] flex items-center justify-center bg-neutral-700">
         <button
           data-name="leftButton"
-          className="absolute left-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
+          className="absolute transform -translate-y-1/2 left-5 top-1/2 hover:bg-neutral-600"
           onClick={scrollLeft}
         >
           {"<---"}
@@ -56,13 +56,13 @@ const TopStories = forwardRef(({ stories }, ref) => {
           ref={containerRef}
           className="hide-scrollbar relative mx-auto flex max-w-[93%] overflow-x-auto whitespace-nowrap py-3 transition-all duration-300 "
         >
-          <ul data-name="articleContainer" className="mx-auto flex">
+          <ul data-name="articleContainer" className="flex mx-auto">
             {stories?.map((story, index) => (
               <li
                 className="relative m-8 inline-block w-96 bg-neutral-700  transition-all duration-300 hover:scale-[1.05]"
                 key={index}
               >
-                <div className="title-container absolute bottom-0 left-0 rounded-sm bg-black bg-opacity-50 p-4 text-white">
+                <div className="absolute bottom-0 left-0 p-4 text-white bg-black bg-opacity-50 rounded-sm title-container">
                   {story.title}
                 </div>
                 <a
@@ -72,7 +72,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
                   title="Read Story!"
                 >
                   <img
-                    className="h-96 rounded-md object-cover"
+                    className="object-cover rounded-md h-96"
                     src={
                       story.multimedia && story.multimedia[0]
                         ? story.multimedia[0].url
@@ -87,7 +87,7 @@ const TopStories = forwardRef(({ stories }, ref) => {
         </div>
         <button
           data-name="rightButton"
-          className="absolute right-5 top-1/2 -translate-y-1/2 transform hover:bg-neutral-600"
+          className="absolute transform -translate-y-1/2 right-5 top-1/2 hover:bg-neutral-600"
           onClick={scrollRight}
         >
           {"--->"}
