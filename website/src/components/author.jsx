@@ -40,29 +40,30 @@ const Author = () => {
     );
   }
   console.log(randomBook);
-
   return (
-    <div className="flex h-screen flex-col items-center justify-center bg-neutral-900 text-white">
-      <h1 className="mb-8 text-4xl font-bold text-white">Book Of The Day!</h1>
-      <div className="flex flex-col items-center gap-10 p-5 md:flex-row">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-900 p-4 pb-0 text-white">
+      <h1 className="mb-8 text-3xl font-bold text-white md:text-4xl">
+        Book Of The Day!
+      </h1>
+      <div className="flex flex-col items-center gap-10 p-5 md:flex-row md:gap-5 lg:gap-10">
         <img
           src={randomBook?.book_image}
           alt="Book cover"
-          className="h-full max-h-[500px] w-full max-w-[300px] object-cover"
+          className="h-full max-h-[300px] w-full max-w-[200px] object-cover md:max-h-[400px] md:max-w-[250px] lg:max-h-[500px] lg:max-w-[300px]"
         />
 
-        <ul className="max-w-[400px] text-center">
-          <li className="border-b border-white pb-2 text-xl">
+        <ul className="max-w-[400px] space-y-4 text-center md:space-y-2">
+          <li className="border-b border-white pb-2 text-lg md:text-xl">
             Title: {randomBook?.title ? randomBook?.title : "Unavailable"}
           </li>
-          <li className="border-b border-white p-2 text-xl">
+          <li className="border-b border-white p-2 text-lg md:text-xl">
             Author: {randomBook?.author ? randomBook?.author : "Unavailable"}
           </li>
-          <li className="border-b border-white p-2 text-xl">
+          <li className="border-b border-white p-2 text-lg md:text-xl">
             Description:{" "}
             {randomBook?.description ? randomBook?.description : "N/A"}
           </li>
-          <li className="border-b border-white p-2 pb-0 text-3xl">
+          <li className="border-b border-white p-2 text-xl md:text-2xl">
             Publisher: {randomBook?.publisher ? randomBook?.publisher : "N/A"}
           </li>
         </ul>
