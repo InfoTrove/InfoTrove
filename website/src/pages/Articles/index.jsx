@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
-import handleFetch from "../../utils/handleFetch";
 import ArticlesContext from "../../context/articlesContext";
 import { useContext } from "react";
 
@@ -14,11 +13,11 @@ const Articles = () => {
   return (
     <div>
       <NavBar />
-      <ul className="flex flex-wrap gap-10 pt-[30px] pb-[30px] md:pl-[15vh] mt-[5rem]">
+      <ul className="mt-[5rem] flex flex-wrap gap-10 pb-[30px] pt-[30px] md:pl-[15vh]">
         {articles?.map((article, index) => (
           <li
             key={index}
-            className="border bg-white text-black hover:scale-[1.05] transition-all duration-300"
+            className="border bg-white text-black transition-all duration-300 hover:scale-[1.05]"
             style={{ width: "18rem" }}
           >
             <a href={`${article.web_url}`}>
@@ -30,7 +29,7 @@ const Articles = () => {
               />
             </a>
             <div className="p-4">
-              <div className="font-bold text-lg">{article.headline?.main}</div>
+              <div className="text-lg font-bold">{article.headline?.main}</div>
               <div className="text-sm">{article.abstract}</div>
             </div>
           </li>

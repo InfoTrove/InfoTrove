@@ -1,16 +1,11 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import NavBar from "../../components/navbar";
-import ArticlesContext from "../../context/articlesContext";
-import { useContext } from "react";
-import { Card } from "react-bootstrap";
 import Footer from "../../components/footer";
 
 const ResPage = () => {
   const location = useLocation();
   const { data, type } = location.state || {};
-  const { articles } = useContext(ArticlesContext);
   const fallBackImage = "https://demofree.sirv.com/nope-not-here.jpg?w=150";
-  console.log(data);
   let content;
 
   switch (type) {
@@ -37,7 +32,7 @@ const ResPage = () => {
                         : fallBackImage
                     }
                     alt={article.headline.main}
-                    className="size-28 w-full"
+                    className="w-full size-28"
                     style={{ height: "auto", maxWidth: "100%" }}
                   />
 

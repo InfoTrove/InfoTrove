@@ -1,6 +1,12 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 import fetch from "node-fetch";
 
+// Type defintions for the schema
+// All the types count as availiable querriesin the same endpoint
+// Query is setting up the endpoints to get data
+// Resolvers act like handlers for the graphql queries (endpoints)
+// Apollo setups up the graphQL and a server to connect it to the frontend (website)
+
 const typeDefs = gql`
   type Article {
     headline: Headline
@@ -25,14 +31,11 @@ const typeDefs = gql`
     getBooks(query: String!): [Book]
   }
 `;
-
-const key = "ExAHYt41AhGeWgODASX7LZZbVv3TTSu1";
-
 const resolvers = {
   Query: {
     getArticles: async (_, { query }) => {
       const response = await fetch(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${key}`,
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${process.env.NYT_API_KEY}`,
       );
       const data = await response.json();
       return data.response.docs.map((article) => ({
@@ -44,7 +47,7 @@ const resolvers = {
     },
     getBooks: async (_, { query }) => {
       const response = await fetch(
-        `https://api.nytimes.com/svc/books/v3/lists/current/${query}.json?api-key=${key}`,
+        `https://api.nytimes.com/svc/books/v3/lists/current/${query}.json?api-key=${process.env.NYT_API_KEY}`,
       );
       const data = await response.json();
       return data.results.books.map((book) => ({
@@ -56,12 +59,15 @@ const resolvers = {
     },
   },
 };
+console.log("resolvers", resolvers);
+const server = new ApolloServer({ typeDefs, resolvers });
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const startServer = server.start();
 
 export default async function handler(req, res) {
-  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
-  return apolloServer.createHandler({ path: "/api/graphql" })(req, res);
+  await startServer;
+  const handler = server.createHandler({ path: "/api/graphql" });
+  return handler(req, res);
 }
 
 export const config = {

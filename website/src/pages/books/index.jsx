@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
-import handleFetch from "../../utils/handleFetch";
 import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
-import { Button, Card } from "react-bootstrap";
 import { useContext } from "react";
 import booksContext from "../../context/booksContext";
 import { Link } from "react-router-dom";
 
 const Books = () => {
-  const [error, setError] = useState();
   const { books, setBooks } = useContext(booksContext);
 
   return (

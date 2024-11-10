@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import BooksContext from "../../context/booksContext";
 import NavBar from "../../components/navbar";
-import Footer from "../../components/footer";
 const BookDetail = () => {
   const { id } = useParams();
   const { books } = useContext(BooksContext);
