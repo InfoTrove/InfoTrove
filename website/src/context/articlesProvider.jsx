@@ -19,7 +19,7 @@ const GET_ARTICLES = gql`
 
 const ArticlesProvider = ({ children }) => {
   const { data, loading, error } = useQuery(GET_ARTICLES, {
-    variables: { query: "election" }, // Default query
+    variables: { query: "election" },
   });
 
   const articles = data?.getArticles || [];

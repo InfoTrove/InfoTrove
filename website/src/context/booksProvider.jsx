@@ -1,6 +1,6 @@
-import { useState } from "react";
-import BooksContext from "./booksContext";
 import { gql, useQuery } from "@apollo/client";
+import BooksContext from "./booksContext";
+import React, { useState, useEffect } from "react";
 
 const GET_BOOKS = gql`
   query GetBooks($listName: String!) {
@@ -9,19 +9,22 @@ const GET_BOOKS = gql`
       primary_isbn10
       book_image
       description
+      buy_links {
+        name
+        url
+      }
     }
   }
 `;
 
 const BooksProvider = ({ children }) => {
-  const [listName, setListName] = useState("hardcover-fiction"); // Default list
   const { data, loading, error } = useQuery(GET_BOOKS, {
-    variables: { listName },
+    variables: { listName: "hardcover-fiction" },
   });
 
   const books = data?.getBooks || [];
 
-  const contextValue = { books, loading, error, setListName };
+  const contextValue = { books, loading, error };
 
   return (
     <BooksContext.Provider value={contextValue}>

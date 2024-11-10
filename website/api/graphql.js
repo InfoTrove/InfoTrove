@@ -20,11 +20,18 @@ const typeDefs = gql`
   type Multimedia {
     url: String
   }
+
+  type BuyLink {
+    name: String
+    url: String
+  }
+
   type Book {
     title: String
     primary_isbn10: String
     book_image: String
     description: String
+    buy_links: [BuyLink]
   }
   type Query {
     getArticles(query: String!): [Article]
@@ -35,7 +42,7 @@ const resolvers = {
   Query: {
     getArticles: async (_, { query }) => {
       const response = await fetch(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${process.env.NYT_API_KEY}`,
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${process.env.NYT_API_KEY_ARTICLES}`,
       );
       const data = await response.json();
       return data.response.docs.map((article) => ({
@@ -47,14 +54,19 @@ const resolvers = {
     },
     getBooks: async (_, { query }) => {
       const response = await fetch(
-        `https://api.nytimes.com/svc/books/v3/lists/current/${query}.json?api-key=${process.env.NYT_API_KEY}`,
+        `https://api.nytimes.com/svc/books/v3/lists/current/${query}.json?api-key=${process.env.NYT_API_KEY_BOOKS}`,
       );
       const data = await response.json();
+      console.log("NYT API response for books:", data);
       return data.results.books.map((book) => ({
         title: book.title,
         primary_isbn10: book.primary_isbn10,
         book_image: book.book_image,
         description: book.description,
+        buy_links: book.buy_links.map((link) => ({
+          name: link.name,
+          url: link.url,
+        })),
       }));
     },
   },
